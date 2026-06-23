@@ -106,9 +106,21 @@ export function IconTruck({ className, size = 26 }: IconProps) {
 export function IconSofa({ className, size = 26 }: IconProps) {
   return (
     <svg className={className} {...base(size)}>
-      <path d="M4 11V8a3 3 0 0 1 3-3h10a3 3 0 0 1 3 3v3" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-      <path d="M2 13a2 2 0 0 1 2 2v3h16v-3a2 2 0 1 1 4 0M2 13a2 2 0 0 1 4 0v2h12v-2" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-      <path d="M5 18v2M19 18v2" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+      <path
+        d="M20 9V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v3"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M4 9a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-5a2 2 0 0 0-2-2H4z"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path d="M4 18v2M20 18v2" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
   );
 }
@@ -148,8 +160,27 @@ export function IconCheck({ className, size = 20 }: IconProps) {
 export function IconRecycle({ className, size = 26 }: IconProps) {
   return (
     <svg className={className} {...base(size)}>
-      <path d="M7 19H4.5a2 2 0 0 1-1.7-3l1.7-3M9.2 6.4 10.5 4a2 2 0 0 1 3.4 0l1.6 2.8M17 9l1.8 3a2 2 0 0 1-1.7 3H14" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-      <path d="m9 16-2 3 3 1M14 9l1-3-3.4-.5M7 12l-2-3 2.5-1.6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+      <path
+        d="M20 13.2 13.2 20a2.4 2.4 0 0 1-3.4 0L4 14.2V4h10.2L20 9.8a2.4 2.4 0 0 1 0 3.4z"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M8.5 8.5h.01"
+        stroke="currentColor"
+        strokeWidth="2.8"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M10.5 13.5h5"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
     </svg>
   );
 }

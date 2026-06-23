@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useCallback, useEffect, useId, useState } from "react";
 import { IconPhone } from "./icons";
 
@@ -10,11 +11,11 @@ type SiteHeaderProps = {
 };
 
 const nav = [
-  { href: "#services", label: "Услуги" },
-  { href: "#equipment", label: "Техника" },
-  { href: "#process-heading", label: "Процес" },
-  { href: "#faq-heading", label: "Въпроси" },
-  { href: "#footer-heading", label: "Контакт" }
+  { href: "/#services", label: "Услуги" },
+  { href: "/#equipment", label: "Техника" },
+  { href: "/#process-heading", label: "Процес" },
+  { href: "/#faq-heading", label: "Въпроси" },
+  { href: "/#footer-heading", label: "Контакт" }
 ];
 
 function IconMenu() {
@@ -86,20 +87,20 @@ export function SiteHeader({ brandName, phoneHref, phoneLabel }: SiteHeaderProps
         <div className="site-header__sheen" aria-hidden="true" />
         <div className="site-header__cluster">
           <div className="site-header__shell">
-            <a href="#hero-heading" className="site-header__brand">
+            <Link href="/" className="site-header__brand">
               <span className="site-header__brandMark" aria-hidden="true">
                 DB
               </span>
               <span className="site-header__brandText">{brandName}</span>
-            </a>
+            </Link>
 
             <nav className="site-header__nav site-header__nav--desktop" aria-label="Основна навигация">
               <ul className="site-header__navList">
                 {nav.map((item) => (
                   <li key={item.href}>
-                    <a href={item.href} className="site-header__navLink">
+                    <Link href={item.href} className="site-header__navLink">
                       {item.label}
-                    </a>
+                    </Link>
                   </li>
                 ))}
               </ul>
@@ -137,9 +138,9 @@ export function SiteHeader({ brandName, phoneHref, phoneLabel }: SiteHeaderProps
               <ul className="site-header__mobileNavList">
                 {nav.map((item) => (
                   <li key={item.href}>
-                    <a href={item.href} className="site-header__mobileNavLink" onClick={closeMenu}>
+                    <Link href={item.href} className="site-header__mobileNavLink" onClick={closeMenu}>
                       {item.label}
-                    </a>
+                    </Link>
                   </li>
                 ))}
               </ul>

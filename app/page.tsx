@@ -1,3 +1,4 @@
+import Link from "next/link";
 import {
   IconArrow,
   IconAttic,
@@ -11,82 +12,37 @@ import {
   IconTruck,
   IconYard
 } from "./icons";
+import { JsonLdScripts } from "./components/json-ld-scripts";
+import { equipment } from "./lib/equipment";
+import { buildHomePageSchemas } from "./lib/json-ld";
+import { getServicePath, services } from "./lib/services";
+import type { ServiceIcon } from "./lib/services";
+import { business, mapEmbedSrc } from "./lib/site";
+import { RevealOnScroll } from "./reveal-on-scroll";
 import { SiteFooter } from "./site-footer";
 import { SiteHeader } from "./site-header";
 
-const PHONE_DISPLAY = "+359 88 000 0000"; // TODO: заменете с реалния телефон
-const PHONE_HREF = "tel:+359880000000"; // TODO: заменете с реалния телефон
- 
-const business = {
-  name: "DB-Clean",
-  city: "България",
-  region: "цялата страна",
-  addressLine: "Обслужваме клиенти в цялата страна",
-  phone: PHONE_DISPLAY,
-  phoneHref: PHONE_HREF,
-  email: "office@db-clean.bg", // TODO: заменете с реалния имейл
-  facebookUrl: "https://www.facebook.com/", // TODO: заменете с реалната Facebook страница
-  siteUrl: "https://db-clean.example.com", // TODO: заменете с реалния домейн
-  description:
-    "DB-Clean извършва почистване на тавани, мазета и обрасли дворове, рязане на опасни дървета, косене и извозване на отпадъци с голям бус. Достъп до труднодостъпни имоти с високопроходим джип."
-};
+const iconMap = {
+  attic: IconAttic,
+  tree: IconTree,
+  yard: IconYard,
+  truck: IconTruck,
+  sofa: IconSofa,
+  jeep: IconJeep,
+  mower: IconMower
+} satisfies Record<ServiceIcon, typeof IconAttic>;
 
-const mapEmbedSrc =
-  "https://www.google.com/maps?q=" +
-  encodeURIComponent("България") +
-  "&z=6&hl=bg&output=embed";
-
-const services = [
-  {
-    icon: IconAttic,
-    title: "Почистване на тавани и мазета",
-    text: "Освобождаваме тавани, мазета и складови помещения от стари вещи и боклук. Възможно заплащане чрез извозените предмети.",
-    highlight: "Плащане чрез извозените предмети"
-  },
-  {
-    icon: IconTree,
-    title: "Рязане на опасни дървета",
-    text: "Сваляме сухи, наклонени и опасни дървета близо до сгради и жици — безопасно, с професионална резачка и техника."
-  },
-  {
-    icon: IconYard,
-    title: "Силно замърсени и обрасли дворове",
-    text: "Разчистваме занемарени, обрасли с храсти и бурени дворове до чисто и проходимо пространство — храсторез, тримери и косачки."
-  },
-  {
-    icon: IconTruck,
-    title: "Извозване на отпадъци с голям бус",
-    text: "Събираме и извозваме всичко почистено наведнъж с голям бус — без многократни курсове и без да чакате."
-  },
-  {
-    icon: IconSofa,
-    title: "Превоз на мебели при местене",
-    text: "Помагаме при изнасяне и местене — внимателен превоз на мебели и обемисти вещи с подходяща техника."
-  },
-  {
-    icon: IconJeep,
-    title: "Достъп до труднодостъпни имоти",
-    text: "Стигаме до парцели и къщи без асфалтиран път с високопроходим джип — там, където обикновен автомобил не може."
-  },
-  {
-    icon: IconMower,
-    title: "Косене и поддръжка на дворове",
-    text: "Редовно или еднократно косене и поддръжка — тримери и косачки за спретнат двор през целия сезон."
-  }
-];
-
-const equipment = [
-  { icon: IconTruck, name: "Голям бус", note: "за извозване на отпадъци и мебели" },
-  { icon: IconJeep, name: "Високопроходим джип", note: "достъп до труднодостъпни имоти" },
-  { icon: IconYard, name: "Тримери и храсторез", note: "за храсти и обрасли площи" },
-  { icon: IconMower, name: "Косачки", note: "косене и поддръжка на дворове" },
-  { icon: IconTree, name: "Резачка за дърва", note: "рязане на опасни дървета" }
+const stats = [
+  { value: "25+", label: "почистени имота" },
+  { value: "80+", label: "тона извозени отпадъци" },
+  { value: "24ч", label: "бърза реакция" },
+  { value: "100%", label: "доволни клиенти" }
 ];
 
 const benefits = [
   "Възможно заплащане чрез извозените предмети — изгодно при разчистване на тавани и мазета.",
-  "Голям бус — цялото количество отпадъци се извозва наведнъж, без излишни курсове.",
-  "Високопроходим джип — достигаме имоти без път, в които другите не влизат.",
+  "Голям бус — цялото количество отпадъци се извозва наведнъж, без излишни курсове. Така цената е най-ниска!",
+  "Високопроходим джип - достигаме имоти без път, където другите фирми не влизат.",
   "Пълна услуга — от рязане и косене до товарене и извозване, без да наемате няколко фирми."
 ];
 
@@ -125,64 +81,16 @@ const faqs = [
   }
 ];
 
-function JsonLd() {
-  const schemas = [
-    {
-      "@context": "https://schema.org",
-      "@type": "LocalBusiness",
-      name: business.name,
-      description: business.description,
-      url: business.siteUrl,
-      telephone: business.phone,
-      email: business.email,
-      sameAs: [business.facebookUrl],
-      areaServed: { "@type": "Country", name: "Bulgaria" }
-    },
-    {
-      "@context": "https://schema.org",
-      "@type": "Service",
-      name: "Почистване на имоти, дворове и извозване на отпадъци",
-      serviceType: "Почистване и извозване",
-      provider: {
-        "@type": "LocalBusiness",
-        name: business.name,
-        telephone: business.phone,
-        email: business.email,
-        url: business.siteUrl
-      },
-      areaServed: "Bulgaria",
-      hasOfferCatalog: {
-        "@type": "OfferCatalog",
-        name: "Услуги на DB-Clean",
-        itemListElement: services.map((s) => ({
-          "@type": "Offer",
-          itemOffered: { "@type": "Service", name: s.title, description: s.text }
-        }))
-      }
-    },
-    {
-      "@context": "https://schema.org",
-      "@type": "FAQPage",
-      mainEntity: faqs.map((faq) => ({
-        "@type": "Question",
-        name: faq.question,
-        acceptedAnswer: { "@type": "Answer", text: faq.answer }
-      }))
-    }
-  ];
-
-  return schemas.map((schema, i) => (
-    <script key={i} type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
-  ));
-}
-
 export default function Home() {
+  const [featuredService, ...otherServices] = services;
+  const FeaturedIcon = iconMap[featuredService.icon];
+  const schemas = buildHomePageSchemas({ faqs, services });
+
   return (
     <>
       <div className="hero-intro">
         <SiteHeader brandName={business.name} phoneHref={business.phoneHref} phoneLabel={business.phone} />
 
-        {/* ── Hero — full-bleed image, gradient with negative space on the left ── */}
         <section className="hero" aria-labelledby="hero-heading">
           <div className="hero__media" aria-hidden="true" />
           <div className="hero__scrim" aria-hidden="true" />
@@ -190,26 +98,25 @@ export default function Home() {
             <div className="hero__content">
               <p className="eyebrow hero__eyebrow">Почистване · Рязане · Извозване</p>
               <h1 id="hero-heading">
-                Разчистваме имоти, дворове и&nbsp;всичко по&nbsp;пътя
+                Почистване на имоти и извозване на отпадъци - София и Перник
               </h1>
               <p className="hero__text">
-                DB-Clean почиства тавани, мазета и обрасли дворове, реже опасни дървета,
-                коси и извозва отпадъците с голям бус. Стигаме и до труднодостъпните имоти
-                с високопроходим джип.
+                DB-Clean разчиства тавани, мазета и терени, коси и поддържа дворове, реже опасни дървета,
+                и извозва отпадъците с голям бус. Стигаме и до труднодостъпни имоти с високопроходим джип.
               </p>
 
               <ul className="hero__usp" aria-label="Защо DB-Clean">
                 <li>
                   <IconCheck size={18} />
-                  Възможно плащане чрез извозените предмети
+                  Плащане чрез извозените предмети
                 </li>
                 <li>
                   <IconCheck size={18} />
-                  Извозване наведнъж с голям бус
+                  Извозване на много отпадъци наведнъж
                 </li>
                 <li>
                   <IconCheck size={18} />
-                  Достъп до имоти без път
+                  Достъп до труднодостъпни имоти
                 </li>
               </ul>
 
@@ -224,22 +131,24 @@ export default function Home() {
                 </a>
                 <a className="button button--ghost" href="#services">
                   Вижте услугите
-                  <IconArrow size={18} />
+                  <span className="button__levitate" aria-hidden="true">
+                    <IconArrow size={18} />
+                  </span>
                 </a>
               </div>
 
               <dl className="trust-grid" aria-label="Предимства на DB-Clean">
                 <div className="trust-item">
                   <dt><span className="trust-dt">Голям бус</span></dt>
-                  <dd><span className="trust-dd">за извозване</span></dd>
+                  <dd><span className="trust-dd">за извозване на отпадъци</span></dd>
                 </div>
                 <div className="trust-item">
                   <dt><span className="trust-dt">Джип 4x4</span></dt>
-                  <dd><span className="trust-dd">труднодостъпни имоти</span></dd>
+                  <dd><span className="trust-dd">за труднодостъпни имоти</span></dd>
                 </div>
                 <div className="trust-item">
-                  <dt><span className="trust-dt">Цялата страна</span></dt>
-                  <dd><span className="trust-dd">на място при вас</span></dd>
+                  <dt><span className="trust-dt">Поддържаме чисто</span></dt>
+                  <dd><span className="trust-dd">в София, Перник и околията</span></dd>
                 </div>
               </dl>
             </div>
@@ -248,77 +157,101 @@ export default function Home() {
       </div>
 
       <main id="main-content">
-        {/* ── Services ── */}
-        <section className="band band--after-hero band--services-intro" id="services" aria-labelledby="services-heading">
+        <section className="band band--light band--after-hero band--services-intro" id="services" aria-labelledby="services-heading">
           <div className="band__inner">
             <div className="section-heading">
-              <p className="eyebrow">Услуги</p>
-              <h2 id="services-heading">Една фирма за цялото разчистване</h2>
+              <h2 id="services-heading" className="eyebrow">Услуги</h2>
+              <p className="section-title">Една фирма за цялото разчистване</p>
               <p>
                 От почистване на тавани и обрасли дворове до рязане на опасни дървета,
-                косене и извозване — DB-Clean покрива целия процес с собствена техника.
+                косене и извозване - DB-Clean покрива целия процес със собствена техника.
               </p>
             </div>
-            <div className="services-grid">
-              {services.map((service) => {
-                const Icon = service.icon;
-                return (
-                  <article className="service-card" key={service.title}>
-                    <span className="service-card__icon" aria-hidden="true">
-                      <Icon />
-                    </span>
-                    <h3>{service.title}</h3>
-                    <p>{service.text}</p>
-                    {service.highlight ? (
-                      <span className="service-card__tag">{service.highlight}</span>
-                    ) : null}
-                  </article>
-                );
-              })}
+            <div className="services-layout">
+              <article className="service-card service-card--featured service-card--link">
+                <span className="service-card__icon" aria-hidden="true">
+                  <FeaturedIcon size={30} />
+                </span>
+                <div className="service-card__content">
+                  <h3>{featuredService.title}</h3>
+                  <p>{featuredService.text}</p>
+                  {featuredService.highlight ? (
+                    <span className="service-card__tag">{featuredService.highlight}</span>
+                  ) : null}
+                  <Link className="service-card__link" href={getServicePath(featuredService.slug)}>
+                    Вижте услугата
+                    <IconArrow size={16} />
+                  </Link>
+                </div>
+              </article>
+              <div className="services-grid services-grid--rest">
+                {otherServices.map((service) => {
+                  const Icon = iconMap[service.icon];
+                  return (
+                    <article className="service-card service-card--link" key={service.slug}>
+                      <span className="service-card__icon" aria-hidden="true">
+                        <Icon />
+                      </span>
+                      <h3>{service.title}</h3>
+                      <p>{service.text}</p>
+                      {service.highlight ? (
+                        <span className="service-card__tag">{service.highlight}</span>
+                      ) : null}
+                      <Link className="service-card__link" href={getServicePath(service.slug)}>
+                        Вижте услугата
+                        <IconArrow size={16} />
+                      </Link>
+                    </article>
+                  );
+                })}
+              </div>
             </div>
           </div>
         </section>
 
-        {/* ── Equipment / Техника ── */}
-        <section className="band band--equipment" id="equipment" aria-labelledby="equipment-heading">
+        <section className="band band--light-alt band--equipment" id="equipment" aria-labelledby="equipment-heading">
           <div className="band__inner">
             <div className="section-heading">
-              <p className="eyebrow">Техника</p>
-              <h2 id="equipment-heading">Машините зад чистия резултат</h2>
+              <h2 id="equipment-heading" className="eyebrow">Техника</h2>
+              <p className="section-title">Машините зад чистия резултат</p>
               <p>
-                Разполагаме със собствена техника за товарене, достъп и рязане — затова
+                Разполагаме със собствена техника за товарене, достъп и рязане - затова
                 поемаме задачи, които други фирми отказват.
               </p>
             </div>
             <div className="equipment-grid">
-              {equipment.map((item) => {
-                const Icon = item.icon;
-                return (
-                  <article className="equipment-card" key={item.name}>
-                    <span className="equipment-card__icon" aria-hidden="true">
-                      <Icon />
-                    </span>
-                    <div className="equipment-card__body">
-                      <h3>{item.name}</h3>
-                      <p>{item.note}</p>
-                    </div>
-                  </article>
-                );
-              })}
+              {equipment.map((item) => (
+                <article className="equipment-card" key={item.name}>
+                  <div className="equipment-card__media">
+                    <img src={item.image} alt={item.name} loading="lazy" />
+                  </div>
+                  <div className="equipment-card__body">
+                    <h3>{item.name}</h3>
+                    <p>{item.note}</p>
+                  </div>
+                </article>
+              ))}
             </div>
           </div>
         </section>
 
-        {/* ── Benefits / Why ── */}
-        <section className="band band--elevated" aria-labelledby="why-heading">
+        <section className="band band--light" aria-labelledby="why-heading">
           <div className="band__inner">
             <div className="split-layout">
-              <div>
-                <p className="eyebrow">Защо DB-Clean</p>
-                <h2 id="why-heading">Повече свършена работа, по-малко главоболия</h2>
+              <div className="split-layout__col">
+                <h2 id="why-heading" className="eyebrow">Защо DB-Clean</h2>
+                <p className="section-title">Повече свършена работа, по-малко главоболия</p>
                 <p className="split-layout__lead">
                   Една фирма с техника за всичко — разчистване, рязане, косене и извозване.
                 </p>
+                <ul className="stat-cards" aria-label="Резултати от DB-Clean">
+                  {stats.map((stat) => (
+                    <li className="stat-card" key={stat.label}>
+                      <strong className="stat-card__value">{stat.value}</strong>
+                      <span className="stat-card__label">{stat.label}</span>
+                    </li>
+                  ))}
+                </ul>
               </div>
               <ul className="benefit-rows">
                 {benefits.map((benefit) => (
@@ -334,79 +267,84 @@ export default function Home() {
           </div>
         </section>
 
-        {/* ── Highlight: payment via items ── */}
-        <section className="band band--offer" aria-labelledby="offer-heading">
+        <section className="band band--light-alt" aria-labelledby="offer-heading">
           <div className="band__inner">
             <div className="offer-panel">
               <span className="offer-panel__icon" aria-hidden="true">
                 <IconRecycle size={30} />
               </span>
               <div className="offer-panel__body">
-                <p className="eyebrow">Изгодно за вас</p>
-                <h2 id="offer-heading">Плащане чрез извозените предмети</h2>
+                <h2 id="offer-heading" className="eyebrow">Изгодно за вас</h2>
+                <p className="section-title">Плащане чрез извозените предмети</p>
                 <p>
                   При разчистване на тавани и мазета често има вещи със стойност.
                   Приспадаме стойността им от цената — а в много случаи почистването
                   излиза без доплащане.
                 </p>
               </div>
-              <a className="button button--primary offer-panel__cta" href={business.phoneHref}>
-                <IconPhone />
-                Питайте за оглед
-              </a>
-            </div>
-          </div>
-        </section>
-
-        {/* ── Process ── */}
-        <section className="band band--dark" aria-labelledby="process-heading">
-          <div className="band__inner">
-            <div className="split-layout">
-              <div>
-                <p className="eyebrow">Процес</p>
-                <h2 id="process-heading">Как протича разчистването</h2>
+              <div className="offer-panel__actions">
+                <a className="button button--primary" href={business.phoneHref}>
+                  <IconPhone />
+                  Резервирайте оглед
+                </a>
+                <a className="button button--ghost" href={business.viberHref}>
+                  <img className="button__brand-icon" src="/icons/viber-logo-png.png" alt="" width={20} height={20} />
+                  Пратете снимки
+                </a>
               </div>
-              <ol className="timeline" aria-label="Стъпки на услугата">
-                {process.map((step, i) => (
-                  <li className="timeline-step" key={step}>
-                    <span className="timeline-num" aria-hidden="true">{i + 1}</span>
-                    <div className="timeline-body">
-                      <p>{step}</p>
-                    </div>
-                  </li>
-                ))}
-              </ol>
             </div>
           </div>
         </section>
 
-        {/* ── Service area ── */}
-        <section className="band band--area" aria-labelledby="area-heading">
+        <section className="band band--light" aria-labelledby="process-heading">
+          <div className="band__inner">
+            <div className="process-layout">
+              <div className="process-content">
+                <h2 id="process-heading" className="eyebrow">Процес</h2>
+                <p className="section-title">Как протича разчистването</p>
+                <ol className="timeline" aria-label="Стъпки на услугата">
+                  {process.map((step, i) => (
+                    <li className="timeline-step" key={step}>
+                      <span className="timeline-num" aria-hidden="true">{i + 1}</span>
+                      <div className="timeline-body">
+                        <p>{step}</p>
+                      </div>
+                    </li>
+                  ))}
+                </ol>
+              </div>
+              <div className="process-image" aria-hidden="true">
+                <img src="/image-clean-yard.webp" alt="" loading="lazy" />
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="band band--light-alt" aria-labelledby="area-heading">
           <div className="band__inner">
             <div className="area-content">
-              <p className="eyebrow">Зона на обслужване</p>
-              <h2 id="area-heading">На място в цялата страна</h2>
+              <h2 id="area-heading" className="eyebrow">Зона на обслужване</h2>
+              <p className="section-title">На място в цялата страна</p>
               <p>
                 DB-Clean обслужва клиенти в цялата страна. С високопроходимия джип
                 достигаме и имоти без асфалтиран път.
               </p>
               <div className="keyword-pills" aria-label="Свързани услуги">
-                <span className="keyword-pill">почистване на тавани и мазета</span>
-                <span className="keyword-pill">рязане на опасни дървета</span>
-                <span className="keyword-pill">разчистване на дворове</span>
-                <span className="keyword-pill">извозване на отпадъци</span>
-                <span className="keyword-pill">косене на трева</span>
+                {services.map((service) => (
+                  <Link className="keyword-pill keyword-pill--link" href={getServicePath(service.slug)} key={service.slug}>
+                    {service.title}
+                  </Link>
+                ))}
               </div>
             </div>
           </div>
         </section>
 
-        {/* ── FAQ ── */}
-        <section className="band band--elevated" aria-labelledby="faq-heading">
+        <section className="band band--light" aria-labelledby="faq-heading">
           <div className="band__inner">
             <div className="section-heading">
-              <p className="eyebrow">Въпроси</p>
-              <h2 id="faq-heading">Преди да започнем работа</h2>
+              <h2 id="faq-heading" className="eyebrow">Въпроси</h2>
+              <p className="section-title">Преди да започнем работа</p>
             </div>
             <div className="faq-grid">
               {faqs.map((faq) => (
@@ -419,12 +357,11 @@ export default function Home() {
           </div>
         </section>
 
-        {/* ── Final CTA ── */}
-        <section className="band band--dark" aria-labelledby="cta-heading">
+        <section className="band band--light-alt" aria-labelledby="cta-heading">
           <div className="band__inner">
             <div className="cta-panel">
-              <p className="eyebrow">Готови за чисто?</p>
-              <h2 id="cta-heading">Свържете се с DB-Clean</h2>
+              <h2 id="cta-heading" className="eyebrow">Готови да видите резултата?</h2>
+              <p className="section-title">Свържете се с DB-Clean!</p>
               <p>
                 Опишете имота и задачата, изпратете снимка, ако помага. Ще получите бърз
                 оглед и ясна цена — включително вариант за плащане чрез извозените вещи.
@@ -454,7 +391,8 @@ export default function Home() {
 
       <SiteFooter business={business} mapEmbedSrc={mapEmbedSrc} />
 
-      <JsonLd />
+      <JsonLdScripts schemas={schemas} />
+      <RevealOnScroll />
     </>
   );
 }

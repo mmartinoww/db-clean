@@ -24,5 +24,5 @@ Open `http://localhost:3000`.
 - Real email and Facebook URL — `business` object in `app/page.tsx`.
 - Real domain — `siteUrl` in `app/layout.tsx` and `app/page.tsx`.
 - Real service area / town for the map embed (`mapEmbedSrc` in `app/page.tsx`).
-- `public/hero.png` — swap for a real photo of the team / vehicles if available
+- `public/herosec-img.webp` — replace with an updated hero photo if needed
   (keep visual subjects on the right, negative space on the left for the text overlay).
