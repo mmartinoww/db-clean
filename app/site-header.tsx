@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useCallback, useEffect, useId, useState } from "react";
+import { SiteLogo } from "./components/site-logo";
 import { IconPhone } from "./icons";
 
 type SiteHeaderProps = {
@@ -87,11 +88,8 @@ export function SiteHeader({ brandName, phoneHref, phoneLabel }: SiteHeaderProps
         <div className="site-header__sheen" aria-hidden="true" />
         <div className="site-header__cluster">
           <div className="site-header__shell">
-            <Link href="/" className="site-header__brand">
-              <span className="site-header__brandMark" aria-hidden="true">
-                DB
-              </span>
-              <span className="site-header__brandText">{brandName}</span>
+            <Link href="/" className="site-header__brand" aria-label={brandName}>
+              <SiteLogo alt={brandName} />
             </Link>
 
             <nav className="site-header__nav site-header__nav--desktop" aria-label="Основна навигация">

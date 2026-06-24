@@ -1,5 +1,4 @@
 import { IconFacebook, IconMail, IconPhone, IconPin } from "./icons";
-
 export type FooterBusiness = {
   name: string;
   city: string;
@@ -26,7 +25,6 @@ export function SiteFooter({ business, mapEmbedSrc }: SiteFooterProps) {
             <h2 id="footer-heading" className="site-footer__title">
               {business.name}
             </h2>
-
             <div className="site-footer__location">
               <span className="site-footer__pin" aria-hidden="true">
                 <IconPin size={18} />

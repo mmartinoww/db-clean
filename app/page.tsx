@@ -175,13 +175,15 @@ export default function Home() {
                 <div className="service-card__content">
                   <h3>{featuredService.title}</h3>
                   <p>{featuredService.text}</p>
-                  {featuredService.highlight ? (
-                    <span className="service-card__tag">{featuredService.highlight}</span>
-                  ) : null}
-                  <Link className="service-card__link" href={getServicePath(featuredService.slug)}>
-                    Вижте услугата
-                    <IconArrow size={16} />
-                  </Link>
+                  <div className="service-card__footer">
+                    {featuredService.highlight ? (
+                      <span className="service-card__tag">{featuredService.highlight}</span>
+                    ) : null}
+                    <Link className="service-card__link" href={getServicePath(featuredService.slug)}>
+                      Вижте услугата
+                      <IconArrow size={16} />
+                    </Link>
+                  </div>
                 </div>
               </article>
               <div className="services-grid services-grid--rest">

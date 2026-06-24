@@ -1,6 +1,6 @@
 import type { ServiceDefinition } from "./services";
 import { getServicePath } from "./services";
-import { BUSINESS_ID, SITE_URL, WEBSITE_ID, business } from "./site";
+import { BUSINESS_ID, OG_IMAGE_SRC, SITE_URL, WEBSITE_ID, business } from "./site";
 
 type JsonLdObject = Record<string, unknown>;
 
@@ -102,7 +102,7 @@ export function buildServicePageSchemas(service: ServiceDefinition): JsonLdObjec
       sameAs: [business.facebookUrl],
       logo: {
         "@type": "ImageObject",
-        url: `${business.siteUrl}/icons/icon.svg`
+        url: `${business.siteUrl}/identity/db-logo.webp`
       },
       areaServed: [
         { "@type": "City", name: "Sofia" },
@@ -129,11 +129,11 @@ export function buildHomePageSchemas(input: {
       sameAs: [business.facebookUrl],
       logo: {
         "@type": "ImageObject",
-        url: `${business.siteUrl}/icons/icon.svg`,
+        url: `${business.siteUrl}/identity/db-logo.webp`,
         width: 512,
         height: 512
       },
-      image: `${business.siteUrl}/og-image.jpg`,
+      image: `${business.siteUrl}${OG_IMAGE_SRC}`,
       priceRange: "$$",
       currenciesAccepted: "BGN",
       paymentAccepted: "Брой, банков превод, плащане чрез извозените предмети",

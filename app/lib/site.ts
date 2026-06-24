@@ -1,8 +1,10 @@
 export const SITE_URL = "https://db-clean.example.com"; // TODO: replace with real domain
+export const LOGO_SRC = "/identity/db-logo.webp";
+export const OG_IMAGE_SRC = "/identity/og-img.webp";
 
-export const PHONE_DISPLAY = "+359 88 000 0000"; // TODO: replace with real phone
-export const PHONE_HREF = "tel:+359880000000";
-export const VIBER_HREF = "viber://chat?number=359880000000";
+export const PHONE_DISPLAY = "+359 894 334 177";
+export const PHONE_HREF = "tel:+359894334177";
+export const VIBER_HREF = "viber://chat?number=359894334177";
 
 export const business = {
   name: "DB-Clean",
@@ -12,7 +14,7 @@ export const business = {
   phone: PHONE_DISPLAY,
   phoneHref: PHONE_HREF,
   viberHref: VIBER_HREF,
-  email: "office@db-clean.bg", // TODO: replace with real email
+  email: "db.clean.office@gmail.com",
   facebookUrl: "https://www.facebook.com/", // TODO: replace with real Facebook page
   siteUrl: SITE_URL,
   description:
