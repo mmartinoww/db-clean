@@ -8,9 +8,10 @@ const montserrat = Montserrat({
   display: "swap"
 });
 
-import { PHONE_DISPLAY, OG_IMAGE_SRC, SITE_URL } from "./lib/site";
+import { PHONE_DISPLAY, OG_IMAGE_SRC, SITE_URL, withTrailingSlash } from "./lib/site";
 
 const siteUrl = SITE_URL;
+const canonicalUrl = `${SITE_URL}${withTrailingSlash("/")}`;
 const siteName = "DB-Clean";
 const sitePhone = PHONE_DISPLAY;
 
@@ -47,9 +48,9 @@ export const metadata: Metadata = {
 
   // ── Canonical & alternates ──────────────────────────────────────────────
   alternates: {
-    canonical: siteUrl,
+    canonical: canonicalUrl,
     languages: {
-      "bg-BG": siteUrl
+      "bg-BG": canonicalUrl
     }
   },
 
@@ -57,7 +58,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "bg_BG",
-    url: siteUrl,
+    url: canonicalUrl,
     siteName,
     title: defaultTitle,
     description:

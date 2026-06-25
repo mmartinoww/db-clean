@@ -1,4 +1,19 @@
 export const SITE_URL = "https://db-clean.example.com"; // TODO: replace with real domain
+
+export function withTrailingSlash(path: string): string {
+  if (!path || path === "/") return "/";
+  if (/^[a-z][a-z0-9+.-]*:/i.test(path)) return path;
+  if (path.startsWith("#")) return path;
+
+  const hashIndex = path.indexOf("#");
+  const pathname = hashIndex >= 0 ? path.slice(0, hashIndex) : path;
+  const hash = hashIndex >= 0 ? path.slice(hashIndex) : "";
+
+  if (pathname === "/") return `/${hash}`;
+
+  const normalized = pathname.endsWith("/") ? pathname : `${pathname}/`;
+  return `${normalized}${hash}`;
+}
 export const LOGO_SRC = "/identity/db-logo.webp";
 export const OG_IMAGE_SRC = "/identity/og-img.webp";
 

@@ -13,7 +13,7 @@ import {
   IconYard
 } from "./icons";
 import { JsonLdScripts } from "./components/json-ld-scripts";
-import { equipment } from "./lib/equipment";
+import { equipment, type EquipmentItem } from "./lib/equipment";
 import { buildHomePageSchemas } from "./lib/json-ld";
 import { getServicePath, services } from "./lib/services";
 import type { ServiceIcon } from "./lib/services";
@@ -21,6 +21,24 @@ import { business, mapEmbedSrc } from "./lib/site";
 import { RevealOnScroll } from "./reveal-on-scroll";
 import { SiteFooter } from "./site-footer";
 import { SiteHeader } from "./site-header";
+
+const featuredEquipment = equipment.slice(0, 2);
+const toolEquipment = equipment.slice(2, -2);
+const bottomFeaturedEquipment = equipment.slice(-2);
+
+function EquipmentCard({ item }: { item: EquipmentItem }) {
+  return (
+    <article className="equipment-card">
+      <div className="equipment-card__media">
+        <img src={item.image} alt={item.name} loading="lazy" />
+      </div>
+      <div className="equipment-card__body">
+        <h3>{item.name}</h3>
+        <p>{item.note}</p>
+      </div>
+    </article>
+  );
+}
 
 const iconMap = {
   attic: IconAttic,
@@ -94,6 +112,11 @@ export default function Home() {
         <section className="hero" aria-labelledby="hero-heading">
           <div className="hero__media" aria-hidden="true" />
           <div className="hero__scrim" aria-hidden="true" />
+          <div className="hero__particles" aria-hidden="true">
+            {Array.from({ length: 16 }).map((_, index) => (
+              <span className="hero__particle" key={index} />
+            ))}
+          </div>
           <div className="hero__container">
             <div className="hero__content">
               <p className="eyebrow hero__eyebrow">Почистване · Рязане · Извозване</p>
@@ -174,7 +197,7 @@ export default function Home() {
                 </span>
                 <div className="service-card__content">
                   <h3>{featuredService.title}</h3>
-                  <p>{featuredService.text}</p>
+                  <p className="mb-0">{featuredService.text}</p>
                   <div className="service-card__footer">
                     {featuredService.highlight ? (
                       <span className="service-card__tag">{featuredService.highlight}</span>
@@ -221,18 +244,22 @@ export default function Home() {
                 поемаме задачи, които други фирми отказват.
               </p>
             </div>
-            <div className="equipment-grid">
-              {equipment.map((item) => (
-                <article className="equipment-card" key={item.name}>
-                  <div className="equipment-card__media">
-                    <img src={item.image} alt={item.name} loading="lazy" />
-                  </div>
-                  <div className="equipment-card__body">
-                    <h3>{item.name}</h3>
-                    <p>{item.note}</p>
-                  </div>
-                </article>
-              ))}
+            <div className="equipment-layout">
+              <div className="equipment-grid equipment-grid--featured">
+                {featuredEquipment.map((item) => (
+                  <EquipmentCard item={item} key={item.id} />
+                ))}
+              </div>
+              <div className="equipment-grid equipment-grid--tools">
+                {toolEquipment.map((item) => (
+                  <EquipmentCard item={item} key={item.id} />
+                ))}
+              </div>
+              <div className="equipment-grid equipment-grid--featured">
+                {bottomFeaturedEquipment.map((item) => (
+                  <EquipmentCard item={item} key={item.id} />
+                ))}
+              </div>
             </div>
           </div>
         </section>
@@ -326,9 +353,9 @@ export default function Home() {
           <div className="band__inner">
             <div className="area-content">
               <h2 id="area-heading" className="eyebrow">Зона на обслужване</h2>
-              <p className="section-title">На място в цялата страна</p>
+              <p className="section-title">На място в София, Перник и околията</p>
               <p>
-                DB-Clean обслужва клиенти в цялата страна. С високопроходимия джип
+                DB-Clean обслужва клиенти в район София и Перник. С високопроходимия ни джип
                 достигаме и имоти без асфалтиран път.
               </p>
               <div className="keyword-pills" aria-label="Свързани услуги">
@@ -365,7 +392,7 @@ export default function Home() {
               <h2 id="cta-heading" className="eyebrow">Готови да видите резултата?</h2>
               <p className="section-title">Свържете се с DB-Clean!</p>
               <p>
-                Опишете имота и задачата, изпратете снимка, ако помага. Ще получите бърз
+                Опишете имота и задачата и изпратете снимки. Ще получите бърз
                 оглед и ясна цена — включително вариант за плащане чрез извозените вещи.
               </p>
               <div className="cta-row">

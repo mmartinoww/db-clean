@@ -14,7 +14,7 @@ import {
 import { getEquipmentByIds } from "../lib/equipment";
 import type { ServiceDefinition, ServiceIcon } from "../lib/services";
 import { getRelatedServices, getServicePath } from "../lib/services";
-import { business, mapEmbedSrc } from "../lib/site";
+import { business, mapEmbedSrc, withTrailingSlash } from "../lib/site";
 import { RevealOnScroll } from "../reveal-on-scroll";
 import { SiteFooter } from "../site-footer";
 import { SiteHeader } from "../site-header";
@@ -40,6 +40,7 @@ export function ServicePage({ service }: ServicePageProps) {
   const equipment = getEquipmentByIds(service.equipmentIds);
   const related = getRelatedServices(service.relatedSlugs);
   const schemas = buildServicePageSchemas(service);
+  const { sections } = service;
 
   return (
     <>
@@ -53,16 +54,16 @@ export function ServicePage({ service }: ServicePageProps) {
               <nav className="service-breadcrumb" aria-label="Навигационна пътека">
                 <ol>
                   <li>
-                    <Link href="/">Начало</Link>
+                    <Link href={withTrailingSlash("/")}>Начало</Link>
                   </li>
                   <li>
-                    <Link href="/#services">Услуги</Link>
+                    <Link href={withTrailingSlash("/#services")}>Услуги</Link>
                   </li>
                   <li aria-current="page">{service.title}</li>
                 </ol>
               </nav>
 
-              <p className="eyebrow service-hero__eyebrow">{business.city}</p>
+              <p className="eyebrow service-hero__eyebrow">Услуга</p>
               <h1 id="service-hero-heading">{service.h1}</h1>
               <p className="service-hero__lead">{service.heroLead}</p>
 
@@ -109,7 +110,7 @@ export function ServicePage({ service }: ServicePageProps) {
             <div className="service-about">
               <div className="service-about__copy">
                 <h2 id="service-about-heading" className="eyebrow">
-                  За услугата
+                  {sections.about.eyebrow}
                 </h2>
                 <p className="section-title">{service.introTitle}</p>
                 {service.introParagraphs.map((paragraph) => (
@@ -120,11 +121,8 @@ export function ServicePage({ service }: ServicePageProps) {
                 <span className="service-about__icon" aria-hidden="true">
                   <Icon size={34} />
                 </span>
-                <p className="service-about__aside-title">DB-Clean поема целия процес</p>
-                <p>
-                  От оглед и оценка до товарене и извозване — със собствена техника и екип в{" "}
-                  {business.city}.
-                </p>
+                <p className="service-about__aside-title">{sections.about.asideTitle}</p>
+                <p>{sections.about.asideText}</p>
               </aside>
             </div>
           </div>
@@ -133,11 +131,14 @@ export function ServicePage({ service }: ServicePageProps) {
         <section className="band band--light-alt" aria-labelledby="service-includes-heading">
           <div className="band__inner">
             <div className="service-split">
-              <div>
+              <div className="service-split__media">
+                <img src={service.heroImage} alt={service.heroImageAlt} loading="lazy" />
+              </div>
+              <div className="service-split__content">
                 <h2 id="service-includes-heading" className="eyebrow">
-                  Какво включва
+                  {sections.includes.eyebrow}
                 </h2>
-                <p className="section-title">Пълна услуга на едно място</p>
+                <p className="section-title">{sections.includes.title}</p>
                 <ul className="service-checklist">
                   {service.includes.map((item) => (
                     <li key={item}>
@@ -149,16 +150,6 @@ export function ServicePage({ service }: ServicePageProps) {
                   ))}
                 </ul>
               </div>
-              <ul className="service-benefit-cards">
-                {service.benefits.map((benefit) => (
-                  <li className="service-benefit-card" key={benefit}>
-                    <span className="benefit-check" aria-hidden="true">
-                      <IconCheck size={16} />
-                    </span>
-                    <p>{benefit}</p>
-                  </li>
-                ))}
-              </ul>
             </div>
           </div>
         </section>
@@ -166,24 +157,15 @@ export function ServicePage({ service }: ServicePageProps) {
         {equipment.length > 0 ? (
           <section className="band band--light band--equipment" aria-labelledby="service-equipment-heading">
             <div className="band__inner">
-              <div className="section-heading">
+              <div className="section-heading service-equipment__heading">
                 <h2 id="service-equipment-heading" className="eyebrow">
-                  Техника за задачата
+                  {sections.equipment.eyebrow}
                 </h2>
-                <p className="section-title">Оборудване, с което работим</p>
+                <p className="section-title">{sections.equipment.title}</p>
+                <p>{sections.equipment.intro}</p>
               </div>
-              <div className="equipment-grid equipment-grid--service">
-                {equipment.map((item) => (
-                  <article className="equipment-card" key={item.id}>
-                    <div className="equipment-card__media">
-                      <img src={item.image} alt={item.name} loading="lazy" />
-                    </div>
-                    <div className="equipment-card__body">
-                      <h3>{item.name}</h3>
-                      <p>{item.note}</p>
-                    </div>
-                  </article>
-                ))}
+              <div className="service-equipment__media">
+                <img src="/big-bus.webp" alt={sections.equipment.title} loading="lazy" />
               </div>
             </div>
           </section>
@@ -194,10 +176,10 @@ export function ServicePage({ service }: ServicePageProps) {
             <div className="service-process">
               <div className="service-process__intro">
                 <h2 id="service-process-heading" className="eyebrow">
-                  Процес
+                  {sections.process.eyebrow}
                 </h2>
-                <p className="section-title">Как протича работата</p>
-                <p>Ясен ред на стъпките — от първото обаждане до чистия резултат.</p>
+                <p className="section-title">{sections.process.title}</p>
+                <p>{sections.process.intro}</p>
               </div>
               <ol className="timeline timeline--service" aria-label="Стъпки на услугата">
                 {service.process.map((step, i) => (
@@ -219,13 +201,10 @@ export function ServicePage({ service }: ServicePageProps) {
           <div className="band__inner">
             <div className="area-content">
               <h2 id="service-area-heading" className="eyebrow">
-                Зона на обслужване
+                {sections.area.eyebrow}
               </h2>
-              <p className="section-title">София, Перник и околността</p>
-              <p>
-                Обслужваме клиенти в {business.city}. При нужда от достъп до труднодостъпни имоти
-                идваме с високопроходим джип.
-              </p>
+              <p className="section-title">{sections.area.title}</p>
+              <p>{sections.area.text}</p>
               <div className="keyword-pills" aria-label="Свързани услуги и ключови думи">
                 {service.keywordPills.map((pill) => (
                   <span className="keyword-pill" key={pill}>
@@ -241,9 +220,9 @@ export function ServicePage({ service }: ServicePageProps) {
           <div className="band__inner">
             <div className="section-heading">
               <h2 id="service-faq-heading" className="eyebrow">
-                Въпроси
+                {sections.faq.eyebrow}
               </h2>
-              <p className="section-title">Често задавани въпроси</p>
+              <p className="section-title">{sections.faq.title}</p>
             </div>
             <div className="faq-grid">
               {service.faqs.map((faq) => (
@@ -259,11 +238,11 @@ export function ServicePage({ service }: ServicePageProps) {
         {related.length > 0 ? (
           <section className="band band--light" aria-labelledby="related-services-heading">
             <div className="band__inner">
-              <div className="section-heading">
+              <div className="section-heading service-related__heading">
                 <h2 id="related-services-heading" className="eyebrow">
-                  Други услуги
+                  {sections.related.eyebrow}
                 </h2>
-                <p className="section-title">Може да ви потрябят и тези</p>
+                <p className="section-title">{sections.related.title}</p>
               </div>
               <div className="service-related-grid">
                 {related.map((item) => {
@@ -291,19 +270,16 @@ export function ServicePage({ service }: ServicePageProps) {
           <div className="band__inner">
             <div className="cta-panel">
               <h2 id="service-cta-heading" className="eyebrow">
-                Готови за {service.title.toLowerCase()}?
+                {sections.cta.eyebrow}
               </h2>
-              <p className="section-title">Свържете се с DB-Clean</p>
-              <p>
-                Опишете имота и задачата — ще получите бърз оглед и ясна цена. Можете да изпратите
-                и снимки през Viber.
-              </p>
+              <p className="section-title">{sections.cta.title}</p>
+              <p>{sections.cta.text}</p>
               <div className="cta-row">
                 <a className="button button--primary" href={business.phoneHref}>
                   <IconPhone />
                   Обадете се
                 </a>
-                <Link className="button button--ghost" href="/#services">
+                <Link className="button button--ghost" href={withTrailingSlash("/#services")}>
                   Всички услуги
                 </Link>
               </div>

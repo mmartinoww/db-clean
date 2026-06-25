@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { ServicePage } from "../../components/service-page";
-import { getServiceBySlug, services } from "../../lib/services";
+import { getServiceBySlug, getServicePath, services } from "../../lib/services";
 import { SITE_URL } from "../../lib/site";
 
 type PageProps = {
@@ -17,7 +17,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const service = getServiceBySlug(slug);
   if (!service) return {};
 
-  const pageUrl = `${SITE_URL}/uslugi/${service.slug}`;
+  const pageUrl = `${SITE_URL}${getServicePath(service.slug)}`;
 
   return {
     title: service.metaTitle,

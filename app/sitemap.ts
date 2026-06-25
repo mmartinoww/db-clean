@@ -1,13 +1,13 @@
 import type { MetadataRoute } from "next";
 import { getServicePath, services } from "./lib/services";
-import { SITE_URL } from "./lib/site";
+import { SITE_URL, withTrailingSlash } from "./lib/site";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
 
   return [
     {
-      url: SITE_URL,
+      url: `${SITE_URL}${withTrailingSlash("/")}`,
       lastModified: now,
       changeFrequency: "monthly",
       priority: 1.0

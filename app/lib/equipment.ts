@@ -35,6 +35,18 @@ export const equipment: EquipmentItem[] = [
     image: "/equip-chainsaw.webp",
     name: "Резачка за дърва",
     note: "за рязане на опасни дървета"
+  },
+  {
+    id: "paintgun",
+    image: "/equip-paintgun.webp",
+    name: "Пистолети за боядисване",
+    note: "за боядисване на повърхности и фасади"
+  },
+  {
+    id: "sprayer",
+    image: "/equip-sprayer.webp",
+    name: "Пръскалка",
+    note: "за убиване на кърлежи и бурени"
   }
 ];
 

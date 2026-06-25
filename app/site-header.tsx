@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useCallback, useEffect, useId, useState } from "react";
 import { SiteLogo } from "./components/site-logo";
 import { IconPhone } from "./icons";
+import { withTrailingSlash } from "./lib/site";
 
 type SiteHeaderProps = {
   brandName: string;
@@ -12,11 +13,11 @@ type SiteHeaderProps = {
 };
 
 const nav = [
-  { href: "/#services", label: "Услуги" },
-  { href: "/#equipment", label: "Техника" },
-  { href: "/#process-heading", label: "Процес" },
-  { href: "/#faq-heading", label: "Въпроси" },
-  { href: "/#footer-heading", label: "Контакт" }
+  { href: withTrailingSlash("/#services"), label: "Услуги" },
+  { href: withTrailingSlash("/#equipment"), label: "Техника" },
+  { href: withTrailingSlash("/#process-heading"), label: "Процес" },
+  { href: withTrailingSlash("/#faq-heading"), label: "Въпроси" },
+  { href: withTrailingSlash("/#footer-heading"), label: "Контакт" }
 ];
 
 function IconMenu() {
@@ -88,7 +89,7 @@ export function SiteHeader({ brandName, phoneHref, phoneLabel }: SiteHeaderProps
         <div className="site-header__sheen" aria-hidden="true" />
         <div className="site-header__cluster">
           <div className="site-header__shell">
-            <Link href="/" className="site-header__brand" aria-label={brandName}>
+            <Link href={withTrailingSlash("/")} className="site-header__brand" aria-label={brandName}>
               <SiteLogo alt={brandName} />
             </Link>
 

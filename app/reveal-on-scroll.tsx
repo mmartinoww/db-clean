@@ -7,6 +7,7 @@ const revealSelectors = [
   ".section-heading",
   ".service-card",
   ".equipment-card",
+  ".service-equipment__media",
   ".benefit-row",
   ".stat-card",
   ".offer-panel",
@@ -22,7 +23,7 @@ const revealSelectors = [
   ".service-hero__media",
   ".service-about",
   ".service-checklist > li",
-  ".service-benefit-card",
+  ".service-split__media",
   ".service-process",
   ".service-related-grid .service-card"
 ].join(",");
