@@ -553,6 +553,7 @@ p.section-title,
   align-items: center;
   min-width: 0;
   flex-shrink: 0;
+  border-radius: 12px;
 }
 
 .site-logo {
@@ -561,6 +562,10 @@ p.section-title,
   height: auto;
   max-width: 200px;
   object-fit: contain;
+  transform-origin: center;
+  transition:
+    filter 0.25s ease,
+    transform 0.25s ease;
 }
 
 .site-logo--header {
@@ -568,6 +573,17 @@ p.section-title,
   max-width: 70px;
   max-height: none;
   height: auto;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .site-header__brand:hover .site-logo,
+  .site-header__brand:focus-visible .site-logo {
+    transform: scale(1.08);
+    filter:
+      drop-shadow(0 0 6px rgba(168, 212, 118, 0.95))
+      drop-shadow(0 0 16px rgba(96, 108, 56, 0.72))
+      drop-shadow(0 0 28px rgba(144, 196, 96, 0.45));
+  }
 }
 
 .site-header__nav--desktop {

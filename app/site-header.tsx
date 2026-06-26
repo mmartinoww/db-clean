@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useCallback, useEffect, useId, useState } from "react";
 import { SiteLogo } from "./components/site-logo";
 import { IconPhone } from "./icons";
@@ -39,7 +40,28 @@ function IconClose() {
 export function SiteHeader({ brandName, phoneHref, phoneLabel }: SiteHeaderProps) {
   const [menuOpen, setMenuOpen] = useState(false);
   const panelId = useId();
+  const pathname = usePathname();
   const closeMenu = useCallback(() => setMenuOpen(false), []);
+  const homeHref = withTrailingSlash("/");
+
+  const handleBrandClick = useCallback(
+    (event: React.MouseEvent<HTMLAnchorElement>) => {
+      closeMenu();
+      const onHomePage = pathname === "/" || pathname === "";
+      if (!onHomePage) return;
+
+      event.preventDefault();
+
+      if (window.location.hash) {
+        window.location.href = homeHref;
+        return;
+      }
+
+      window.history.replaceState(window.history.state, "", homeHref);
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    },
+    [closeMenu, homeHref, pathname]
+  );
 
   useEffect(() => {
     if (!menuOpen) return;
@@ -89,7 +111,12 @@ export function SiteHeader({ brandName, phoneHref, phoneLabel }: SiteHeaderProps
         <div className="site-header__sheen" aria-hidden="true" />
         <div className="site-header__cluster">
           <div className="site-header__shell">
-            <Link href={withTrailingSlash("/")} className="site-header__brand" aria-label={brandName}>
+            <Link
+              href={homeHref}
+              className="site-header__brand"
+              aria-label={brandName}
+              onClick={handleBrandClick}
+            >
               <SiteLogo alt={brandName} />
             </Link>
 
