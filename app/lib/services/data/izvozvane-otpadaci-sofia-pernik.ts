@@ -5,8 +5,10 @@ export const izvozvaneOtpadaci: ServiceDefinition = {
     icon: "truck",
     title: "Извозване на отпадъци с огромен бус",
     text: "Събираме и извозваме всичко почистено наведнъж с голям бус — без многократни курсове и без да чакате.",
-    heroImage: "/equip-van.webp",
+    heroImage: "/services/izvozvane-bus-hero.webp",
     heroImageAlt: "Извозване на отпадъци с голям бус — DB-Clean",
+    includesImage: "/services/izvozvane-bus.webp",
+    includesImageAlt: "Голям бус за извозване на отпадъци — DB-Clean",
     metaTitle: "Извозване на отпадъци с голям бус — София и Перник",
     metaDescription:
       "Извозване на строителни, битови и дворови отпадъци с голям бус в София и Перник. Един курс, най-ниска цена — без многократни курсове.",
@@ -19,7 +21,7 @@ export const izvozvaneOtpadaci: ServiceDefinition = {
       "голям бус отпадъци",
       "DB-Clean"
     ],
-    h1: "Извозване на отпадъци с голям бус — наведнъж",
+    h1: "Извозване на отпадъци с голям бус в София и Перник",
     heroLead:
       "Събираме и извозваме строителни, битови и дворови отпадъци с огромен бус — един курс, без многократни пътувания и без да чакате.",
     heroPoints: [

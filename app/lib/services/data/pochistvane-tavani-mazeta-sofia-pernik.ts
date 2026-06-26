@@ -6,8 +6,10 @@ export const pochistvaneTavaniMazeta: ServiceDefinition = {
   title: "Почистване на тавани и мазета",
   text: "Освобождаваме тавани, мазета и складови помещения от стари вещи и боклук.",
   highlight: "Плащане чрез извозените предмети",
-  heroImage: "/herosec-img2.webp",
-  heroImageAlt: "Почистване на таван и мазе — DB-Clean",
+  heroImage: "/services/pochistvane-tavan.webp",
+  heroImageAlt: "Почистване на таван — DB-Clean",
+  includesImage: "/services/pochistvane-maze.webp",
+  includesImageAlt: "Почистване на мазе — DB-Clean",
   metaTitle: "Почистване на тавани и мазета — София и Перник",
   metaDescription:
     "Професионално почистване на тавани, мазета и складови помещения в София и Перник. Извозване на отпадъци с голям бус. Възможно плащане чрез извозените предмети.",

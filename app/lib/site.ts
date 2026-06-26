@@ -1,4 +1,4 @@
-export const SITE_URL = "https://db-clean.example.com"; // TODO: replace with real domain
+export const SITE_URL = "https://db-clean.com";
 
 export function withTrailingSlash(path: string): string {
   if (!path || path === "/") return "/";

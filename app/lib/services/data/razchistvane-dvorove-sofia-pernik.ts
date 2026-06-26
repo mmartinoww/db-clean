@@ -5,8 +5,10 @@ export const razchistvaneDvorove: ServiceDefinition = {
     icon: "yard",
     title: "Силно замърсени и обрасли дворове",
     text: "Разчистваме занемарени, обрасли с храсти и бурени дворове до чисто и проходимо пространство - с храсторез, тримери и косачки.",
-    heroImage: "/image-clean-yard.webp",
+    heroImage: "/services/kosene-dvor-hero.webp",
     heroImageAlt: "Разчистване на обрасли двор — DB-Clean",
+    includesImage: "/services/kosene-dvor.webp",
+    includesImageAlt: "Разчистване на замърсен двор — DB-Clean",
     metaTitle: "Разчистване на обрасли и замърсени дворове — София",
     metaDescription:
       "Разчистване на занемарени, обрасли с храсти и бурени дворове в София и Перник. Храсторез, тримери, косачки и извозване с бус.",

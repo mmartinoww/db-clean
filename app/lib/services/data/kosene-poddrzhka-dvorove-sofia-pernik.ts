@@ -5,8 +5,10 @@ export const kosenePoddrzhkaDvorove: ServiceDefinition = {
     icon: "mower",
     title: "Косене и поддръжка на дворове",
     text: "Редовно или еднократно косене и поддръжка - разполагаме с тримери и косачки за спретнат двор през целия сезон.",
-    heroImage: "/equip-mower.webp",
+    heroImage: "/services/kosene-dvorove-hero.webp",
     heroImageAlt: "Косене и поддръжка на двор — DB-Clean",
+    includesImage: "/services/kosene-dvorove.webp",
+    includesImageAlt: "Косене и поддръжка на двор — DB-Clean",
     metaTitle: "Косене и поддръжка на дворове — София и Перник",
     metaDescription:
       "Еднократно или редовно косене и поддръжка на дворове в София и Перник. Тримери, косачки и разчистване на бурени.",
@@ -19,7 +21,7 @@ export const kosenePoddrzhkaDvorove: ServiceDefinition = {
       "тримери косачки",
       "DB-Clean"
     ],
-    h1: "Косене и поддръжка на дворове — редовно или еднократно",
+    h1: "Косене и поддръжка на дворове в София и Перник",
     heroLead:
       "Поддържаме двора ви спретнат през целия сезон — с тримери и косачки, еднократно или по график.",
     heroPoints: [

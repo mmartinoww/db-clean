@@ -5,8 +5,10 @@ export const dostupTrudnodostapniImoti: ServiceDefinition = {
     icon: "jeep",
     title: "Достъп до труднодостъпни имоти",
     text: "Стигаме до имоти и къщи без асфалтиран път с високопроходим джип - там, където обикновен автомобил не може да премине.",
-    heroImage: "/equip-jeep.webp",
+    heroImage: "/services/djip-4x4-hero.webp",
     heroImageAlt: "Достъп до труднодостъпни имоти с джип 4x4 — DB-Clean",
+    includesImage: "/services/djip-4x4.webp",
+    includesImageAlt: "Високопроходим джип 4x4 до труднодостъпен имот — DB-Clean",
     metaTitle: "Достъп до труднодостъпни имоти с джип 4x4",
     metaDescription:
       "DB-Clean стига до имоти и къщи без асфалтиран път с високопроходим джип 4x4. Почистване, рязане и извозване там, където другите не влизат.",

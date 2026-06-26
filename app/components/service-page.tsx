@@ -132,7 +132,11 @@ export function ServicePage({ service }: ServicePageProps) {
           <div className="band__inner">
             <div className="service-split">
               <div className="service-split__media">
-                <img src={service.heroImage} alt={service.heroImageAlt} loading="lazy" />
+                <img
+                  src={service.includesImage ?? service.heroImage}
+                  alt={service.includesImageAlt ?? service.heroImageAlt}
+                  loading="lazy"
+                />
               </div>
               <div className="service-split__content">
                 <h2 id="service-includes-heading" className="eyebrow">

@@ -5,8 +5,10 @@ export const ryazaneOpasniDyrveta: ServiceDefinition = {
     icon: "tree",
     title: "Рязане на опасни дървета",
     text: "Сваляме опасни, стари или наклонени дървета — безопасно, с професионален екип и техника.",
-    heroImage: "/equip-chainsaw.webp",
-    heroImageAlt: "Рязане на опасни дървета с професионална техника — DB-Clean",
+    heroImage: "/services/rqzane-durvo.webp",
+    heroImageAlt: "Рязане на опасно дърво — DB-Clean",
+    includesImage: "/services/izvozvane-kloni.webp",
+    includesImageAlt: "Извозване на клони след рязане — DB-Clean",
     metaTitle: "Рязане на опасни дървета — София и Перник",
     metaDescription:
       "Безопасно рязане и сваляне на опасни, сухи и наклонени дървета в София и Перник. Професионална резачка, извозване на клоните с бус.",

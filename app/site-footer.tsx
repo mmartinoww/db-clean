@@ -1,4 +1,6 @@
+import Link from "next/link";
 import { IconFacebook, IconMail, IconPhone, IconPin } from "./icons";
+import { withTrailingSlash } from "./lib/site";
 export type FooterBusiness = {
   name: string;
   city: string;
@@ -100,6 +102,10 @@ export function SiteFooter({ business, mapEmbedSrc }: SiteFooterProps) {
         <span>
           © {new Date().getFullYear()} {business.name}. Почистване и извозване — {business.city}.
         </span>
+        <nav className="site-footer__legal" aria-label="Правна информация">
+          <Link href={withTrailingSlash("/terms")}>Общи условия</Link>
+          <Link href={withTrailingSlash("/privacy")}>Политика за поверителност</Link>
+        </nav>
       </div>
     </footer>
   );

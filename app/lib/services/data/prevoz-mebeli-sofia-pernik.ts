@@ -5,8 +5,10 @@ export const prevozMebeli: ServiceDefinition = {
     icon: "sofa",
     title: "Превоз на мебели при местене",
     text: "Помагаме при изнасяне и местене - внимателен превоз на мебели и обемисти вещи с подходящ бус.",
-    heroImage: "/equip-van.webp",
+    heroImage: "/services/prevoz-mebeli-hero.webp",
     heroImageAlt: "Превоз на мебели с бус — DB-Clean",
+    includesImage: "/services/prevoz-mebeli.webp",
+    includesImageAlt: "Изнасяне и превоз на мебели — DB-Clean",
     metaTitle: "Превоз на мебели при местене — София и Перник",
     metaDescription:
       "Превоз и изнасяне на мебели и обемисти вещи при местене в София и Перник. Голям бус, внимателно товарене и разтоварване.",

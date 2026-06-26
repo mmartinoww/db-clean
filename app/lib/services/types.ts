@@ -60,6 +60,8 @@ export type ServiceDefinition = {
   highlight?: string;
   heroImage: string;
   heroImageAlt: string;
+  includesImage?: string;
+  includesImageAlt?: string;
   metaTitle: string;
   metaDescription: string;
   keywords: string[];

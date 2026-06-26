@@ -17,6 +17,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: now,
       changeFrequency: "monthly" as const,
       priority: 0.85
-    }))
+    })),
+    {
+      url: `${SITE_URL}${withTrailingSlash("/terms")}`,
+      lastModified: now,
+      changeFrequency: "yearly",
+      priority: 0.3
+    },
+    {
+      url: `${SITE_URL}${withTrailingSlash("/privacy")}`,
+      lastModified: now,
+      changeFrequency: "yearly",
+      priority: 0.3
+    }
   ];
 }
