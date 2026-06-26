@@ -1,7 +1,7 @@
 import type { ServiceDefinition } from "../types";
 
-export const kosenePoddrzhkaDvorove: ServiceDefinition = {
-    slug: "kosene-poddrzhka-dvorove-sofia-pernik",
+export const kosenePoddrujkaDvorove: ServiceDefinition = {
+    slug: "kosene-poddrujka-dvorove-sofia-pernik",
     icon: "mower",
     title: "Косене и поддръжка на дворове",
     text: "Редовно или еднократно косене и поддръжка - разполагаме с тримери и косачки за спретнат двор през целия сезон.",
@@ -43,7 +43,7 @@ export const kosenePoddrzhkaDvorove: ServiceDefinition = {
       "Освежаване на гаражни врати, огради и фасади с пистолети за боядисване"
     ],
     benefits: [
-      "Един екип за косене, разчистване и извозване — без допълнителни фirmи.",
+      "Един екип за косене, разчистване и извозване — без допълнителни фirmi.",
       "Собствена техника — тримери и косачки за всеки тип терен.",
       "Можем да комбинираме с пълно разчистване на обрасли дворове."
     ],
@@ -83,7 +83,7 @@ export const kosenePoddrzhkaDvorove: ServiceDefinition = {
       "тримери",
       "косене в София"
     ],
-    relatedSlugs: ["razchistvane-dvorove-sofia-pernik", "ryazane-opasni-dyrveta-sofia-pernik", "dostup-trudnodostapni-imoti-sofia-pernik"],
+    relatedSlugs: ["razchistvane-dvorove-sofia-pernik", "rqzane-opasni-durveta-sofia-pernik", "dostup-trudnodostupni-imoti-sofia-pernik"],
   sections: {
     about: {
       eyebrow: "Косене и поддръжка на дворове",

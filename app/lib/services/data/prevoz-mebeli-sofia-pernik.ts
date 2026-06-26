@@ -83,7 +83,7 @@ export const prevozMebeli: ServiceDefinition = {
       "бус за мебели",
       "превоз София"
     ],
-    relatedSlugs: ["pochistvane-tavani-mazeta-sofia-pernik", "izvozvane-otpadaci-sofia-pernik", "dostup-trudnodostapni-imoti-sofia-pernik"],
+    relatedSlugs: ["pochistvane-tavani-mazeta-sofia-pernik", "izvozvane-otpadaci-sofia-pernik", "dostup-trudnodostupni-imoti-sofia-pernik"],
   sections: {
     about: {
       eyebrow: "Превоз на мебели при местене",

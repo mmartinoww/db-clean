@@ -1,7 +1,7 @@
 import type { ServiceDefinition } from "../types";
 
-export const dostupTrudnodostapniImoti: ServiceDefinition = {
-    slug: "dostup-trudnodostapni-imoti-sofia-pernik",
+export const dostupTrudnodostupniImoti: ServiceDefinition = {
+    slug: "dostup-trudnodostupni-imoti-sofia-pernik",
     icon: "jeep",
     title: "Достъп до труднодостъпни имоти",
     text: "Стигаме до имоти и къщи без асфалтиран път с високопроходим джип - там, където обикновен автомобил не може да премине.",
@@ -44,7 +44,7 @@ export const dostupTrudnodostapniImoti: ServiceDefinition = {
     ],
     benefits: [
       "Един от малкото екипи с джип 4x4 и пълен набор техника.",
-      "Не отказваме имоти, до които другите фirmи не стигат.",
+      "Не отказваме имоти, до които другите фirmi не стигат.",
       "Пълна услуга на място — без допълнителни координации."
     ],
     process: [
@@ -83,7 +83,7 @@ export const dostupTrudnodostapniImoti: ServiceDefinition = {
       "достъп до имот",
       "почистване село"
     ],
-    relatedSlugs: ["razchistvane-dvorove-sofia-pernik", "izvozvane-otpadaci-sofia-pernik", "ryazane-opasni-dyrveta-sofia-pernik"],
+    relatedSlugs: ["razchistvane-dvorove-sofia-pernik", "izvozvane-otpadaci-sofia-pernik", "rqzane-opasni-durveta-sofia-pernik"],
   sections: {
     about: {
       eyebrow: "Достъп до имоти без път",

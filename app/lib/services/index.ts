@@ -1,23 +1,23 @@
 import { withTrailingSlash } from "../site";
-import { dostupTrudnodostapniImoti } from "./data/dostup-trudnodostapni-imoti-sofia-pernik";
+import { dostupTrudnodostupniImoti } from "./data/dostup-trudnodostupni-imoti-sofia-pernik";
 import { izvozvaneOtpadaci } from "./data/izvozvane-otpadaci-sofia-pernik";
-import { kosenePoddrzhkaDvorove } from "./data/kosene-poddrzhka-dvorove-sofia-pernik";
+import { kosenePoddrujkaDvorove } from "./data/kosene-poddrujka-dvorove-sofia-pernik";
 import { pochistvaneTavaniMazeta } from "./data/pochistvane-tavani-mazeta-sofia-pernik";
 import { prevozMebeli } from "./data/prevoz-mebeli-sofia-pernik";
 import { razchistvaneDvorove } from "./data/razchistvane-dvorove-sofia-pernik";
-import { ryazaneOpasniDyrveta } from "./data/ryazane-opasni-dyrveta-sofia-pernik";
+import { rqzaneOpasniDurveta } from "./data/rqzane-opasni-durveta-sofia-pernik";
 import type { ServiceDefinition, ServiceFaq, ServiceIcon, ServicePageSections } from "./types";
 
 export type { ServiceDefinition, ServiceFaq, ServiceIcon, ServicePageSections };
 
 export const services: ServiceDefinition[] = [
   pochistvaneTavaniMazeta,
-  ryazaneOpasniDyrveta,
+  rqzaneOpasniDurveta,
   razchistvaneDvorove,
   izvozvaneOtpadaci,
   prevozMebeli,
-  dostupTrudnodostapniImoti,
-  kosenePoddrzhkaDvorove
+  dostupTrudnodostupniImoti,
+  kosenePoddrujkaDvorove
 ];
 
 export function getServiceBySlug(slug: string): ServiceDefinition | undefined {

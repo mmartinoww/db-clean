@@ -1,7 +1,7 @@
 import type { ServiceDefinition } from "../types";
 
-export const ryazaneOpasniDyrveta: ServiceDefinition = {
-    slug: "ryazane-opasni-dyrveta-sofia-pernik",
+export const rqzaneOpasniDurveta: ServiceDefinition = {
+    slug: "rqzane-opasni-durveta-sofia-pernik",
     icon: "tree",
     title: "Рязане на опасни дървета",
     text: "Сваляме опасни, стари или наклонени дървета — безопасно, с професионален екип и техника.",
@@ -83,7 +83,7 @@ export const ryazaneOpasniDyrveta: ServiceDefinition = {
       "извозване клони",
       "рязане София"
     ],
-    relatedSlugs: ["razchistvane-dvorove-sofia-pernik", "izvozvane-otpadaci-sofia-pernik", "kosene-poddrzhka-dvorove-sofia-pernik"],
+    relatedSlugs: ["razchistvane-dvorove-sofia-pernik", "izvozvane-otpadaci-sofia-pernik", "kosene-poddrujka-dvorove-sofia-pernik"],
   sections: {
     about: {
       eyebrow: "Рязане и сваляне на дървета",

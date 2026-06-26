@@ -83,7 +83,7 @@ export const razchistvaneDvorove: ServiceDefinition = {
       "почистване двор",
       "разчистване София"
     ],
-    relatedSlugs: ["kosene-poddrzhka-dvorove-sofia-pernik", "ryazane-opasni-dyrveta-sofia-pernik", "izvozvane-otpadaci-sofia-pernik"],
+    relatedSlugs: ["kosene-poddrujka-dvorove-sofia-pernik", "rqzane-opasni-durveta-sofia-pernik", "izvozvane-otpadaci-sofia-pernik"],
   sections: {
     about: {
       eyebrow: "Разчистване на обрасли дворове",
