@@ -3,7 +3,6 @@
 import { useEffect } from "react";
 
 const revealSelectors = [
-  ".band > .band__inner",
   ".section-heading",
   ".service-card",
   ".equipment-card",
@@ -21,11 +20,13 @@ const revealSelectors = [
   ".site-footer__mapWrap",
   ".service-hero__content",
   ".service-hero__media",
-  ".service-about",
+  ".service-about__copy",
+  ".service-about__aside",
   ".service-checklist > li",
   ".service-split__media",
-  ".service-process",
-  ".service-related-grid .service-card"
+  ".service-process__intro",
+  ".service-related-grid .service-card",
+  ".split-layout__col"
 ].join(",");
 
 export function RevealOnScroll() {
@@ -57,8 +58,8 @@ export function RevealOnScroll() {
         });
       },
       {
-        rootMargin: "0px 0px -12% 0px",
-        threshold: 0.14
+        rootMargin: "0px 0px 15% 0px",
+        threshold: 0
       }
     );
 

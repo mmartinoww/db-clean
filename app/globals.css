@@ -53,6 +53,18 @@ body.site-menu-open {
   body.site-menu-open {
     scroll-behavior: auto;
   }
+
+  .site-header__backdrop,
+  .site-header__mobilePanel {
+    transition: none !important;
+  }
+
+  .site-header__mobilePanel--open .site-header__mobileNavLink,
+  .site-header__mobilePanel--open .site-header__mobileCta {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
 }
 
 a {
@@ -502,6 +514,20 @@ p.section-title,
   padding: 0 clamp(14px, 3.5vw, 28px) 10px;
 }
 
+.site-header--pinned {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+.site-header--pinned .site-header__shell {
+  box-shadow:
+    0 10px 28px rgba(0, 0, 0, 0.24),
+    0 4px 12px rgba(40, 54, 24, 0.18),
+    inset 0 1px 0 rgba(168, 212, 118, 0.12);
+}
+
 .site-header__cluster {
   position: relative;
   width: min(1160px, 100%);
@@ -519,11 +545,11 @@ p.section-title,
   pointer-events: none;
   background: radial-gradient(
     ellipse 100% 70% at 50% 0%,
-    rgba(221, 161, 94, 0.2),
-    rgba(96, 108, 56, 0.1) 42%,
+    rgba(168, 212, 118, 0.22),
+    rgba(96, 108, 56, 0.16) 42%,
     transparent 68%
   );
-  filter: blur(2px);
+  filter: blur(1px);
 }
 
 .site-header__shell {
@@ -536,16 +562,23 @@ p.section-title,
   margin: 0 auto;
   padding: 12px 18px;
   border-radius: 22px;
-  border: 1px solid rgba(254, 250, 224, 0.14);
+  border: 1px solid rgba(168, 212, 118, 0.3);
   background:
-    linear-gradient(125deg, rgba(254, 250, 224, 0.14) 0%, rgba(254, 250, 224, 0.03) 38%, rgba(254, 250, 224, 0.08) 100%),
-    rgba(18, 28, 11, 0.52);
-  backdrop-filter: blur(22px) saturate(1.3);
-  -webkit-backdrop-filter: blur(22px) saturate(1.3);
-  box-shadow:
-    0 14px 42px rgba(0, 0, 0, 0.46),
-    inset 0 1px 0 rgba(254, 250, 224, 0.12),
-    0 0 0 1px rgba(221, 161, 94, 0.08);
+    linear-gradient(
+      135deg,
+      rgba(118, 138, 62, 0.82) 0%,
+      rgba(40, 54, 24, 0.78) 48%,
+      rgba(88, 110, 48, 0.8) 100%
+    );
+  backdrop-filter: blur(12px) saturate(1.35);
+  -webkit-backdrop-filter: blur(12px) saturate(1.35);
+  box-shadow: inset 0 1px 0 rgba(168, 212, 118, 0.22);
+  transition:
+    background 0.25s ease,
+    border-color 0.25s ease,
+    box-shadow 0.25s ease,
+    backdrop-filter 0.25s ease,
+    border-radius 0.25s ease;
 }
 
 .site-header__brand {
@@ -660,8 +693,8 @@ p.section-title,
   height: 46px;
   padding: 0;
   border-radius: 16px;
-  border: 1px solid rgba(254, 250, 224, 0.16);
-  background: rgba(254, 250, 224, 0.06);
+  border: 1px solid rgba(168, 212, 118, 0.26);
+  background: rgba(72, 92, 42, 0.45);
   color: var(--fg);
   cursor: pointer;
   font-family: inherit;
@@ -686,6 +719,12 @@ p.section-title,
 
 .site-header__backdrop {
   display: none;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition:
+    opacity 0.28s ease,
+    visibility 0.28s ease;
 }
 
 .site-header__mobilePanel {
@@ -737,6 +776,12 @@ p.section-title,
     -webkit-backdrop-filter: blur(4px);
   }
 
+  .site-header__backdrop--open {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+  }
+
   .site-header__shell {
     grid-template-columns: minmax(0, 1fr) auto;
     gap: 10px 12px;
@@ -758,20 +803,83 @@ p.section-title,
   .site-header__mobilePanel {
     display: block;
     overflow: hidden;
-    margin-top: 10px;
-    padding: 10px 14px 14px;
+    max-height: 0;
+    margin-top: 0;
+    padding-block: 0;
+    padding-inline: 14px;
+    opacity: 0;
+    transform: translateY(-10px) scale(0.985);
     border-radius: 20px;
-    border: 1px solid rgba(254, 250, 224, 0.13);
+    border: 1px solid transparent;
     background:
-      linear-gradient(145deg, rgba(254, 250, 224, 0.12) 0%, rgba(254, 250, 224, 0.04) 42%, rgba(254, 250, 224, 0.09) 100%),
-      rgba(18, 28, 11, 0.58);
-    backdrop-filter: blur(22px) saturate(1.3);
-    -webkit-backdrop-filter: blur(22px) saturate(1.3);
-    box-shadow: 0 22px 48px rgba(0, 0, 0, 0.46), inset 0 1px 0 rgba(254, 250, 224, 0.1);
+      linear-gradient(
+        145deg,
+        rgba(118, 138, 62, 0.78) 0%,
+        rgba(40, 54, 24, 0.74) 52%,
+        rgba(88, 110, 48, 0.76) 100%
+      );
+    backdrop-filter: blur(12px) saturate(1.35);
+    -webkit-backdrop-filter: blur(12px) saturate(1.35);
+    box-shadow: inset 0 1px 0 rgba(168, 212, 118, 0.18);
+    pointer-events: none;
+    visibility: hidden;
+    transition:
+      max-height 0.38s cubic-bezier(0.22, 1, 0.36, 1),
+      opacity 0.28s ease,
+      transform 0.34s cubic-bezier(0.22, 1, 0.36, 1),
+      margin-top 0.28s ease,
+      padding 0.34s cubic-bezier(0.22, 1, 0.36, 1),
+      border-color 0.28s ease,
+      visibility 0.28s ease;
   }
 
-  .site-header__mobilePanel[hidden] {
-    display: none !important;
+  .site-header__mobilePanel--open {
+    max-height: min(72vh, 520px);
+    margin-top: 10px;
+    padding-block: 10px 14px;
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    border-color: rgba(168, 212, 118, 0.26);
+    pointer-events: auto;
+    visibility: visible;
+  }
+
+  .site-header--pinned .site-header__mobilePanel--open {
+    box-shadow:
+      0 12px 28px rgba(0, 0, 0, 0.22),
+      inset 0 1px 0 rgba(168, 212, 118, 0.18);
+  }
+
+  .site-header__mobilePanel--open .site-header__mobileNavLink {
+    opacity: 0;
+    transform: translateY(-6px);
+    animation: site-header-mobile-link-in 0.32s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
+
+  .site-header__mobilePanel--open .site-header__mobileNavList li:nth-child(1) .site-header__mobileNavLink {
+    animation-delay: 0.05s;
+  }
+
+  .site-header__mobilePanel--open .site-header__mobileNavList li:nth-child(2) .site-header__mobileNavLink {
+    animation-delay: 0.09s;
+  }
+
+  .site-header__mobilePanel--open .site-header__mobileNavList li:nth-child(3) .site-header__mobileNavLink {
+    animation-delay: 0.13s;
+  }
+
+  .site-header__mobilePanel--open .site-header__mobileNavList li:nth-child(4) .site-header__mobileNavLink {
+    animation-delay: 0.17s;
+  }
+
+  .site-header__mobilePanel--open .site-header__mobileNavList li:nth-child(5) .site-header__mobileNavLink {
+    animation-delay: 0.21s;
+  }
+
+  .site-header__mobilePanel--open .site-header__mobileCta {
+    opacity: 0;
+    transform: translateY(-6px);
+    animation: site-header-mobile-link-in 0.34s cubic-bezier(0.22, 1, 0.36, 1) 0.24s forwards;
   }
 
   .site-header__mobileNavList {
@@ -800,6 +908,18 @@ p.section-title,
   }
 }
 
+@keyframes site-header-mobile-link-in {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 @media (min-width: 761px) {
   .site-header__mobilePanel {
     display: none !important;
@@ -808,11 +928,11 @@ p.section-title,
 
 @supports not (backdrop-filter: blur(1px)) {
   .site-header__shell {
-    background: rgba(20, 30, 12, 0.94);
+    background: rgba(40, 54, 24, 0.94);
   }
 
-  .site-header__mobilePanel:not([hidden]) {
-    background: rgba(22, 34, 14, 0.96);
+  .site-header__mobilePanel--open {
+    background: rgba(56, 72, 32, 0.96);
   }
 }
 
@@ -1821,8 +1941,10 @@ p.service-about__aside-title {
 .reveal-ready .service-split__media.reveal-item,
 .reveal-ready .service-hero__content.reveal-item,
 .reveal-ready .service-hero__media.reveal-item,
-.reveal-ready .service-about.reveal-item,
-.reveal-ready .service-process.reveal-item {
+.reveal-ready .service-about__copy.reveal-item,
+.reveal-ready .service-about__aside.reveal-item,
+.reveal-ready .service-process__intro.reveal-item,
+.reveal-ready .split-layout__col.reveal-item {
   opacity: 0;
   transform: translate3d(0, 34px, 0) scale(0.985);
   filter: blur(10px);
@@ -1837,8 +1959,10 @@ p.service-about__aside-title {
 .reveal-ready .service-split__media.reveal-item.is-visible,
 .reveal-ready .service-hero__content.reveal-item.is-visible,
 .reveal-ready .service-hero__media.reveal-item.is-visible,
-.reveal-ready .service-about.reveal-item.is-visible,
-.reveal-ready .service-process.reveal-item.is-visible {
+.reveal-ready .service-about__copy.reveal-item.is-visible,
+.reveal-ready .service-about__aside.reveal-item.is-visible,
+.reveal-ready .service-process__intro.reveal-item.is-visible,
+.reveal-ready .split-layout__col.reveal-item.is-visible {
   opacity: 1;
   transform: translate3d(0, 0, 0) scale(1);
   filter: blur(0);

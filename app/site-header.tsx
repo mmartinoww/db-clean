@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useCallback, useEffect, useId, useState } from "react";
+import { useCallback, useEffect, useId, useRef, useState } from "react";
 import { SiteLogo } from "./components/site-logo";
 import { IconPhone } from "./icons";
 import { withTrailingSlash } from "./lib/site";
@@ -39,7 +39,9 @@ function IconClose() {
 
 export function SiteHeader({ brandName, phoneHref, phoneLabel }: SiteHeaderProps) {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [pinned, setPinned] = useState(false);
   const panelId = useId();
+  const headerRef = useRef<HTMLElement>(null);
   const pathname = usePathname();
   const closeMenu = useCallback(() => setMenuOpen(false), []);
   const homeHref = withTrailingSlash("/");
@@ -96,18 +98,48 @@ export function SiteHeader({ brandName, phoneHref, phoneLabel }: SiteHeaderProps
     return () => mq.removeEventListener("change", onChange);
   }, []);
 
+  useEffect(() => {
+    const header = headerRef.current;
+    if (!header) return;
+
+    let threshold = 16;
+
+    const updateThreshold = () => {
+      const intro = header.closest(".hero-intro, .service-intro") as HTMLElement | null;
+      threshold = intro ? Math.max(intro.offsetTop + 12, 12) : 64;
+    };
+
+    const onScroll = () => {
+      setPinned(window.scrollY > threshold);
+    };
+
+    const onResize = () => {
+      updateThreshold();
+      onScroll();
+    };
+
+    updateThreshold();
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onResize);
+
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onResize);
+    };
+  }, [pathname]);
+
   return (
     <>
-      {menuOpen ? (
-        <button
-          type="button"
-          className="site-header__backdrop"
-          aria-label="Затвори менюто"
-          tabIndex={-1}
-          onClick={closeMenu}
-        />
-      ) : null}
-      <header className="site-header">
+      <button
+        type="button"
+        className={`site-header__backdrop${menuOpen ? " site-header__backdrop--open" : ""}`}
+        aria-label="Затвори менюто"
+        aria-hidden={!menuOpen}
+        tabIndex={menuOpen ? -1 : undefined}
+        onClick={closeMenu}
+      />
+      <header ref={headerRef} className={`site-header${pinned ? " site-header--pinned" : ""}`}>
         <div className="site-header__sheen" aria-hidden="true" />
         <div className="site-header__cluster">
           <div className="site-header__shell">
@@ -155,10 +187,10 @@ export function SiteHeader({ brandName, phoneHref, phoneLabel }: SiteHeaderProps
 
           <div
             id={panelId}
-            className="site-header__mobilePanel"
+            className={`site-header__mobilePanel${menuOpen ? " site-header__mobilePanel--open" : ""}`}
             role="region"
             aria-label="Мобилна навигация"
-            hidden={!menuOpen}
+            aria-hidden={!menuOpen}
           >
             <nav aria-label="Основна навигация">
               <ul className="site-header__mobileNavList">
