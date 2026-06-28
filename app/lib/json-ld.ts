@@ -1,6 +1,7 @@
+import type { BlogCategory, BlogPost } from "./blog/types";
 import type { ServiceDefinition } from "./services";
 import { getServicePath } from "./services";
-import { BUSINESS_ID, OG_IMAGE_SRC, SITE_URL, WEBSITE_ID, business } from "./site";
+import { BUSINESS_ID, OG_IMAGE_SRC, SITE_URL, WEBSITE_ID, business, withTrailingSlash } from "./site";
 
 type JsonLdObject = Record<string, unknown>;
 
@@ -107,6 +108,167 @@ export function buildServicePageSchemas(service: ServiceDefinition): JsonLdObjec
       areaServed: [
         { "@type": "City", name: "Sofia" },
         { "@type": "City", name: "Pernik" }
+      ]
+    }
+  ];
+}
+
+export function buildBlogIndexSchemas(): JsonLdObject[] {
+  const pageUrl = `${SITE_URL}${withTrailingSlash("/blog")}`;
+  return [
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "@id": `${pageUrl}#webpage`,
+      url: pageUrl,
+      name: "Блог | DB-Clean — Съвети за почистване и разчистване",
+      description:
+        "Практически съвети за почистване на имоти, разчистване на дворове, рязане на дървета и извозване на отпадъци в Sofia и Перник.",
+      inLanguage: "bg-BG",
+      isPartOf: { "@id": WEBSITE_ID },
+      about: { "@id": BUSINESS_ID }
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "@id": `${pageUrl}#breadcrumb`,
+      itemListElement: [
+        { "@type": "ListItem", position: 1, name: "Начало", item: SITE_URL },
+        { "@type": "ListItem", position: 2, name: "Блог", item: pageUrl }
+      ]
+    }
+  ];
+}
+
+export function buildBlogPostSchemas(post: BlogPost): JsonLdObject[] {
+  const pageUrl = `${SITE_URL}/blog/${post.slug}/`;
+  return [
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "@id": `${pageUrl}#article`,
+      headline: post.title,
+      description: post.description,
+      datePublished: post.date,
+      dateModified: post.dateModified ?? post.date,
+      url: pageUrl,
+      image: {
+        "@type": "ImageObject",
+        url: `${SITE_URL}${post.coverImage}`,
+        caption: post.coverImageAlt
+      },
+      author: {
+        "@type": "Organization",
+        name: business.name,
+        url: business.siteUrl,
+        "@id": BUSINESS_ID
+      },
+      publisher: { "@id": BUSINESS_ID },
+      mainEntityOfPage: { "@type": "WebPage", "@id": pageUrl },
+      inLanguage: "bg-BG",
+      articleSection: post.category,
+      isPartOf: { "@id": WEBSITE_ID }
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "@id": `${pageUrl}#breadcrumb`,
+      itemListElement: [
+        { "@type": "ListItem", position: 1, name: "Начало", item: SITE_URL },
+        { "@type": "ListItem", position: 2, name: "Блог", item: `${SITE_URL}/blog/` },
+        { "@type": "ListItem", position: 3, name: post.title, item: pageUrl }
+      ]
+    }
+  ];
+}
+
+export function buildBlogCategorySchemas(category: BlogCategory): JsonLdObject[] {
+  const pageUrl = `${SITE_URL}/blog/category/${category.slug}/`;
+  return [
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "@id": `${pageUrl}#webpage`,
+      url: pageUrl,
+      name: `${category.title} | Блог DB-Clean`,
+      description: category.metaDescription,
+      inLanguage: "bg-BG",
+      isPartOf: { "@id": WEBSITE_ID },
+      about: { "@id": BUSINESS_ID }
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "@id": `${pageUrl}#breadcrumb`,
+      itemListElement: [
+        { "@type": "ListItem", position: 1, name: "Начало", item: SITE_URL },
+        { "@type": "ListItem", position: 2, name: "Блог", item: `${SITE_URL}/blog/` },
+        { "@type": "ListItem", position: 3, name: category.title, item: pageUrl }
+      ]
+    }
+  ];
+}
+
+export function buildPokritieSchemas(): JsonLdObject[] {
+  const pageUrl = `${SITE_URL}${withTrailingSlash("/pokritie")}`;
+  return [
+    {
+      "@context": "https://schema.org",
+      "@type": ["LocalBusiness", "HomeAndConstructionBusiness"],
+      "@id": BUSINESS_ID,
+      name: business.name,
+      description: business.description,
+      url: business.siteUrl,
+      telephone: business.phone,
+      email: business.email,
+      areaServed: [
+        { "@type": "City", name: "Sofia" },
+        { "@type": "City", name: "Pernik" },
+        { "@type": "AdministrativeArea", name: "Sofia Province" },
+        { "@type": "AdministrativeArea", name: "Pernik Province" }
+      ]
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "@id": `${pageUrl}#webpage`,
+      url: pageUrl,
+      name: "Зона на покритие | DB-Clean — София, Перник и Околността",
+      description:
+        "DB-Clean обслужва имоти в София, Перник и всички прилежащи квартали и села.",
+      inLanguage: "bg-BG",
+      isPartOf: { "@id": WEBSITE_ID },
+      about: { "@id": BUSINESS_ID }
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "@id": `${pageUrl}#breadcrumb`,
+      itemListElement: [
+        { "@type": "ListItem", position: 1, name: "Начало", item: SITE_URL },
+        { "@type": "ListItem", position: 2, name: "Покритие", item: pageUrl }
+      ]
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      mainEntity: [
+        {
+          "@type": "Question",
+          name: "Работите ли само в София и Перник?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "Основната ни зона е София и Перник, но приемаме задачи и в близките общини — Костинброд, Сливница, Ихтиман."
+          }
+        },
+        {
+          "@type": "Question",
+          name: "Стигате ли до имот без асфалтиран път?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "Да. Разполагаме с джип 4x4 и стигаме до дворове и парцели в планински или селски райони, до които обикновен автомобил не може да влезе."
+          }
+        }
       ]
     }
   ];

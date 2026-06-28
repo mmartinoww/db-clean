@@ -18,6 +18,7 @@ const nav = [
   { href: withTrailingSlash("/#equipment"), label: "Техника" },
   { href: withTrailingSlash("/#process-heading"), label: "Процес" },
   { href: withTrailingSlash("/#faq-heading"), label: "Въпроси" },
+  { href: withTrailingSlash("/blog"), label: "Блог" },
   { href: withTrailingSlash("/#footer-heading"), label: "Контакт" }
 ];
 

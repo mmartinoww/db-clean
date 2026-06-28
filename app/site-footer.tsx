@@ -102,9 +102,11 @@ export function SiteFooter({ business, mapEmbedSrc }: SiteFooterProps) {
         <span>
           © {new Date().getFullYear()} {business.name}. Почистване и извозване — {business.city}.
         </span>
-        <nav className="site-footer__legal" aria-label="Правна информация">
+        <nav className="site-footer__legal" aria-label="Допълнителни връзки">
+          <Link href={withTrailingSlash("/blog")}>Блог</Link>
+          <Link href={withTrailingSlash("/pokritie")}>Покритие</Link>
           <Link href={withTrailingSlash("/terms")}>Общи условия</Link>
-          <Link href={withTrailingSlash("/privacy")}>Политика за поверителност</Link>
+          <Link href={withTrailingSlash("/privacy")}>Поверителност</Link>
         </nav>
       </div>
     </footer>

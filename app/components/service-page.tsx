@@ -14,12 +14,14 @@ import {
 import { getEquipmentByIds } from "../lib/equipment";
 import type { ServiceDefinition, ServiceIcon } from "../lib/services";
 import { getRelatedServices, getServicePath } from "../lib/services";
+import { blogCategories, blogPosts } from "../lib/blog";
 import { business, mapEmbedSrc, withTrailingSlash } from "../lib/site";
 import { RevealOnScroll } from "../reveal-on-scroll";
 import { SiteFooter } from "../site-footer";
 import { SiteHeader } from "../site-header";
 import { JsonLdScripts } from "./json-ld-scripts";
 import { buildServicePageSchemas } from "../lib/json-ld";
+import { BlogCard } from "./blog-card";
 
 const iconMap = {
   attic: IconAttic,
@@ -41,6 +43,10 @@ export function ServicePage({ service }: ServicePageProps) {
   const related = getRelatedServices(service.relatedSlugs);
   const schemas = buildServicePageSchemas(service);
   const { sections } = service;
+
+  const relatedBlogPosts = blogPosts
+    .filter((post) => post.relatedServiceSlugs.includes(service.slug))
+    .slice(0, 2);
 
   return (
     <>
@@ -215,6 +221,9 @@ export function ServicePage({ service }: ServicePageProps) {
                     {pill}
                   </span>
                 ))}
+                <Link className="keyword-pill keyword-pill--link" href={withTrailingSlash("/pokritie")}>
+                  Зона на покритие
+                </Link>
               </div>
             </div>
           </div>
@@ -265,6 +274,34 @@ export function ServicePage({ service }: ServicePageProps) {
                     </article>
                   );
                 })}
+              </div>
+            </div>
+          </section>
+        ) : null}
+
+        {relatedBlogPosts.length > 0 ? (
+          <section className="band band--light" aria-labelledby="service-blog-heading">
+            <div className="band__inner">
+              <div className="section-heading service-related__heading">
+                <h2 id="service-blog-heading" className="eyebrow">
+                  От блога
+                </h2>
+                <p className="section-title">Полезна информация за тази услуга</p>
+              </div>
+              <div className="blog-grid blog-grid--compact">
+                {relatedBlogPosts.map((post) => (
+                  <BlogCard
+                    key={post.slug}
+                    slug={post.slug}
+                    title={post.title}
+                    excerpt={post.excerpt}
+                    date={post.date}
+                    author={post.author}
+                    coverImage={post.coverImage}
+                    coverImageAlt={post.coverImageAlt}
+                    category={blogCategories.find((c) => c.slug === post.category)}
+                  />
+                ))}
               </div>
             </div>
           </section>
