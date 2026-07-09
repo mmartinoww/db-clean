@@ -227,15 +227,40 @@ export function ServicePage({ service }: ServicePageProps) {
               aria-labelledby={`service-feature-${i}-heading`}
             >
               <div className="band__inner">
-                <div className="area-content">
-                  <h2 id={`service-feature-${i}-heading`} className="eyebrow">
-                    {section.eyebrow}
-                  </h2>
-                  <p className="section-title">{section.title}</p>
-                  {section.paragraphs.map((paragraph) => (
-                    <p key={paragraph}>{paragraph}</p>
-                  ))}
-                </div>
+                {section.image ? (
+                  <div
+                    className={`service-split service-feature-split${
+                      i % 2 === 1 ? " service-split--reverse" : ""
+                    }`}
+                  >
+                    <div className="service-split__media">
+                      <img
+                        src={section.image}
+                        alt={section.imageAlt ?? ""}
+                        loading="lazy"
+                      />
+                    </div>
+                    <div className="service-split__content area-content">
+                      <h2 id={`service-feature-${i}-heading`} className="eyebrow">
+                        {section.eyebrow}
+                      </h2>
+                      <p className="section-title">{section.title}</p>
+                      {section.paragraphs.map((paragraph) => (
+                        <p key={paragraph}>{paragraph}</p>
+                      ))}
+                    </div>
+                  </div>
+                ) : (
+                  <div className="area-content">
+                    <h2 id={`service-feature-${i}-heading`} className="eyebrow">
+                      {section.eyebrow}
+                    </h2>
+                    <p className="section-title">{section.title}</p>
+                    {section.paragraphs.map((paragraph) => (
+                      <p key={paragraph}>{paragraph}</p>
+                    ))}
+                  </div>
+                )}
               </div>
             </section>
             {i === 0 && service.featureDividerImage ? (

@@ -86,7 +86,7 @@ export const pochistvaneTavaniMazeta: ServiceDefinition = {
   ],
   relatedSlugs: [
     "izvozvane-otpadaci-sofia-pernik",
-    "prevoz-mebeli-sofia-pernik",
+    "prevoz-sglobqvane-mebeli-sofia-pernik",
     "razchistvane-dvorove-sofia-pernik"
   ],
   sections: {

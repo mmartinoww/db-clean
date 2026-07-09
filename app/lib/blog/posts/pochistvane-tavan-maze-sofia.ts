@@ -67,6 +67,6 @@ export const pochistvaneTavanMazeSofia: BlogPost = {
   relatedServiceSlugs: [
     "pochistvane-tavani-mazeta-sofia-pernik",
     "izvozvane-otpadaci-sofia-pernik",
-    "prevoz-mebeli-sofia-pernik"
+    "prevoz-sglobqvane-mebeli-sofia-pernik"
   ]
 };

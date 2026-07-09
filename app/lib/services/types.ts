@@ -14,6 +14,8 @@ export type ServiceFeatureSection = {
   eyebrow: string;
   title: string;
   paragraphs: string[];
+  image?: string;
+  imageAlt?: string;
 };
 
 export type ServiceFaq = {

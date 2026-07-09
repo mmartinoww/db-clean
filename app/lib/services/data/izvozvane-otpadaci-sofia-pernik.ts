@@ -83,7 +83,7 @@ export const izvozvaneOtpadaci: ServiceDefinition = {
       "извозване София",
       "строителни отпадъци"
     ],
-    relatedSlugs: ["pochistvane-tavani-mazeta-sofia-pernik", "razchistvane-dvorove-sofia-pernik", "prevoz-mebeli-sofia-pernik"],
+    relatedSlugs: ["pochistvane-tavani-mazeta-sofia-pernik", "razchistvane-dvorove-sofia-pernik", "prevoz-sglobqvane-mebeli-sofia-pernik"],
   sections: {
     about: {
       eyebrow: "Извозване на отпадъци с бус",

@@ -7,7 +7,8 @@ const projectRoot = dirname(fileURLToPath(import.meta.url));
 const legacyServiceSlugRedirects = [
   ["dostup-trudnodostapni-imoti-sofia-pernik", "dostup-trudnodostupni-imoti-sofia-pernik"],
   ["kosene-poddrzhka-dvorove-sofia-pernik", "kosene-poddrujka-dvorove-sofia-pernik"],
-  ["ryazane-opasni-dyrveta-sofia-pernik", "rqzane-opasni-durveta-sofia-pernik"]
+  ["ryazane-opasni-dyrveta-sofia-pernik", "rqzane-opasni-durveta-sofia-pernik"],
+  ["prevoz-mebeli-sofia-pernik", "prevoz-sglobqvane-mebeli-sofia-pernik"]
 ];
 
 /** @type {import('next').NextConfig} */

@@ -351,7 +351,7 @@ p.section-title,
 .band--light .section-title,
 .band--light-alt .section-title {
   color: var(--forest);
-} 
+}  
 
 .band--light .section-heading > p:not(.section-title),
 .band--light-alt .section-heading > p:not(.section-title),
@@ -1409,6 +1409,7 @@ p.section-title,
   object-fit: cover;
 }
 
+
 .service-equipment-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -1935,6 +1936,57 @@ p.service-about__aside-title {
   grid-template-columns: minmax(260px, 0.95fr) minmax(0, 1fr);
   gap: clamp(24px, 4vw, 36px);
   align-items: stretch;
+}
+
+.service-split--reverse .service-split__media {
+  order: 2;
+}
+
+.service-split--reverse .service-split__content {
+  order: 1;
+}
+
+.service-feature-split {
+  align-items: center;
+}
+
+.service-feature-split .service-split__content.area-content {
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  text-align: left;
+  align-items: flex-start;
+}
+
+.service-feature-split .service-split__content.area-content .section-title,
+.service-feature-split .service-split__content.area-content p {
+  margin-inline: 0;
+  max-width: 64ch;
+}
+
+.service-feature-split.service-split--reverse .service-split__content.area-content {
+  text-align: right;
+  align-items: flex-end;
+}
+
+.service-feature-split.service-split--reverse .service-split__content.area-content .section-title,
+.service-feature-split.service-split--reverse .service-split__content.area-content p {
+  margin-inline: 0 0 0 auto;
+}
+
+.service-feature-split .service-split__media {
+  height: 300px;
+  max-height: 300px;
+  min-height: 0;
+}
+
+.service-feature-split .service-split__media img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  max-height: 300px;
+  object-fit: cover;
 }
 
 .service-split__media {
@@ -2942,6 +2994,20 @@ p.service-about__aside-title {
   .process-image img,
   .service-split__media img {
     min-height: 320px;
+  }
+
+  .service-feature-split .service-split__media {
+    height: 300px;
+    max-height: 300px;
+    min-height: 0;
+  }
+
+  .service-feature-split .service-split__media img {
+    width: 100%;
+    height: 100%;
+    min-height: 0;
+    max-height: 300px;
+    object-fit: cover;
   }
 
   .offer-panel {

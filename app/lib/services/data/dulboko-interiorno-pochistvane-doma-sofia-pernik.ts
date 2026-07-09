@@ -90,7 +90,7 @@ export const dulbokoInteriornoPochistvaneDoma: ServiceDefinition = {
     "Kirby и Rainbow",
     "интериорно почистване София"
   ],
-  relatedSlugs: ["prevoz-mebeli-sofia-pernik"],
+  relatedSlugs: ["prevoz-sglobqvane-mebeli-sofia-pernik"],
   featureSections: [
     {
       eyebrow: "ПОЧИСТВАНЕ НА ФУГИ",
