@@ -5,7 +5,16 @@ export type ServiceIcon =
   | "truck"
   | "sofa"
   | "jeep"
-  | "mower";
+  | "mower"
+  | "home";
+
+export type ServiceHighlightVariant = "default" | "hypoallergenic";
+
+export type ServiceFeatureSection = {
+  eyebrow: string;
+  title: string;
+  paragraphs: string[];
+};
 
 export type ServiceFaq = {
   question: string;
@@ -58,6 +67,7 @@ export type ServiceDefinition = {
   title: string;
   text: string;
   highlight?: string;
+  highlightVariant?: ServiceHighlightVariant;
   heroImage: string;
   heroImageAlt: string;
   includesImage?: string;
@@ -74,6 +84,11 @@ export type ServiceDefinition = {
   benefits: string[];
   process: string[];
   equipmentIds: string[];
+  equipmentImage?: string;
+  equipmentImageAlt?: string;
+  featureSections?: ServiceFeatureSection[];
+  featureDividerImage?: string;
+  featureDividerImageAlt?: string;
   faqs: ServiceFaq[];
   keywordPills: string[];
   relatedSlugs: string[];

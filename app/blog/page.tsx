@@ -15,7 +15,7 @@ const pageUrl = `${SITE_URL}${withTrailingSlash("/blog")}`;
 export const metadata: Metadata = {
   title: "Блог — Съвети за почистване и разчистване на имоти",
   description:
-    "Практически съвети за разчистване на дворове, почистване на тавани и мазета, рязане на опасни дървета и извозване на отпадъци в Sofia и Перник — от екипа на DB-Clean.",
+    "Практически съвети за разчистване на дворове, почистване на тавани и мазета, рязане на опасни дървета и извозване на отпадъци в София и Перник — от екипа на DB-Clean.",
   alternates: {
     canonical: pageUrl,
     languages: { "bg-BG": pageUrl }
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     siteName: "DB-Clean",
     title: "Блог | DB-Clean — Съвети за почистване и разчистване",
     description:
-      "Практически съвети за почистване на имоти, разчистване на дворове, рязане на дървета и извозване на отпадъци в Sofia и Перnik."
+      "Практически съвети за почистване на имоти, разчистване на дворове, рязане на дървета и извозване на отпадъци в София и Перник."
   },
   robots: { index: true, follow: true }
 };
@@ -58,7 +58,7 @@ export default function BlogIndexPage() {
               <p className="eyebrow service-hero__eyebrow">Полезна информация</p>
               <h1 id="blog-index-heading">Съвети за почистване и разчистване</h1>
               <p className="service-hero__lead">
-                Практически статии от екипа на DB-Clean за Sofia, Перnik и околността — дворове,
+                Практически статии от екипа на DB-Clean за София, Перник и околността — дворове,
                 тавани, мазета, дървета и извозване.
               </p>
             </div>
@@ -76,7 +76,7 @@ export default function BlogIndexPage() {
               <p className="section-title">Практични съвети от DB-Clean</p>
               <p>
                 Разчистване на дворове, почистване на тавани и мазета, рязане на опасни дървета и
-                извозване на отпадъци — съвети за Sofia и Перnik.
+                извозване на отпадъци — съвети за София и Перник.
               </p>
             </div>
 
@@ -93,7 +93,7 @@ export default function BlogIndexPage() {
               <p className="section-title">Свържете се с DB-Clean</p>
               <p>
                 Описвате имота, задачата и достъпа — получавате оглед и ясна цена за почистване,
-                разчистване или извозване в Sofia и Перnik.
+                разчистване или извозване в София и Перник.
               </p>
               <div className="cta-row">
                 <a className="button button--primary" href={business.phoneHref}>

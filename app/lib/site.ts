@@ -14,7 +14,7 @@ export function withTrailingSlash(path: string): string {
   const normalized = pathname.endsWith("/") ? pathname : `${pathname}/`;
   return `${normalized}${hash}`;
 }
-export const LOGO_SRC = "/identity/db-logo.webp";
+export const LOGO_SRC = "/identity/db-logo-v2-white.webp";
 export const OG_IMAGE_SRC = "/identity/og-img.webp";
 
 export const PHONE_DISPLAY = "+359 894 334 177";

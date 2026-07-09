@@ -47,6 +47,18 @@ export const equipment: EquipmentItem[] = [
     image: "/equip-sprayer.webp",
     name: "Пръскалка",
     note: "за убиване на кърлежи и бурени"
+  },
+  {
+    id: "kirby",
+    image: "/services/kirby1.webp",
+    name: "Kirby",
+    note: "професионална система за дълбоко почистване на мебели и текстил"
+  },
+  {
+    id: "rainbow",
+    image: "/services/rainbow1.webp",
+    name: "Rainbow",
+    note: "извличане на прах, акари и алергени в дълбочина"
   }
 ];
 

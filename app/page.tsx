@@ -3,7 +3,9 @@ import {
   IconArrow,
   IconAttic,
   IconCheck,
+  IconHome,
   IconJeep,
+  IconLeaf,
   IconMower,
   IconPhone,
   IconRecycle,
@@ -16,7 +18,7 @@ import { JsonLdScripts } from "./components/json-ld-scripts";
 import { equipment, type EquipmentItem } from "./lib/equipment";
 import { buildHomePageSchemas } from "./lib/json-ld";
 import { getServicePath, services } from "./lib/services";
-import type { ServiceIcon } from "./lib/services";
+import type { ServiceDefinition, ServiceIcon } from "./lib/services";
 import { business, mapEmbedSrc } from "./lib/site";
 import { RevealOnScroll } from "./reveal-on-scroll";
 import { SiteFooter } from "./site-footer";
@@ -47,8 +49,71 @@ const iconMap = {
   truck: IconTruck,
   sofa: IconSofa,
   jeep: IconJeep,
-  mower: IconMower
+  mower: IconMower,
+  home: IconHome
 } satisfies Record<ServiceIcon, typeof IconAttic>;
+
+const premiumServiceSlugs = [
+  "pochistvane-tavani-mazeta-sofia-pernik",
+  "dulboko-interiorno-pochistvane-doma-sofia-pernik"
+] as const;
+
+function ServiceHighlightTag({ service }: { service: ServiceDefinition }) {
+  if (!service.highlight) return null;
+
+  return (
+    <span
+      className={`service-card__tag${
+        service.highlightVariant === "hypoallergenic" ? " service-card__tag--hypo" : ""
+      }`}
+    >
+      {service.highlightVariant === "hypoallergenic" ? <IconLeaf size={13} aria-hidden="true" /> : null}
+      {service.highlight}
+    </span>
+  );
+}
+
+function PremiumServiceCard({ service }: { service: ServiceDefinition }) {
+  const Icon = iconMap[service.icon];
+
+  return (
+    <article className="service-card service-card--featured service-card--link">
+      <span className="service-card__icon" aria-hidden="true">
+        <Icon size={30} />
+      </span>
+      <div className="service-card__content">
+        <h3>{service.title}</h3>
+        <p className="mb-0">{service.text}</p>
+        <div className="service-card__footer">
+          <ServiceHighlightTag service={service} />
+          <Link className="service-card__link" href={getServicePath(service.slug)}>
+            Вижте услугата
+            <IconArrow size={16} />
+          </Link>
+        </div>
+      </div>
+    </article>
+  );
+}
+
+function ServiceCard({ service }: { service: ServiceDefinition }) {
+  const Icon = iconMap[service.icon];
+
+  return (
+    <article className="service-card service-card--link">
+      <span className="service-card__icon" aria-hidden="true">
+        <Icon />
+      </span>
+      <h3>{service.title}</h3>
+      <p>{service.text}</p>
+      <ServiceHighlightTag service={service} />
+      <Link className="service-card__link" href={getServicePath(service.slug)}>
+        Вижте услугата
+        <IconArrow size={16} />
+      </Link>
+    </article>
+  );
+}
 
 const stats = [
   { value: "25+", label: "почистени имота" },
@@ -100,8 +165,10 @@ const faqs = [
 ];
 
 export default function Home() {
-  const [featuredService, ...otherServices] = services;
-  const FeaturedIcon = iconMap[featuredService.icon];
+  const premiumServices = premiumServiceSlugs
+    .map((slug) => services.find((service) => service.slug === slug))
+    .filter((service): service is ServiceDefinition => Boolean(service));
+  const regularServices = services.filter((service) => !premiumServiceSlugs.includes(service.slug as (typeof premiumServiceSlugs)[number]));
   const schemas = buildHomePageSchemas({ faqs, services });
 
   return (
@@ -191,44 +258,15 @@ export default function Home() {
               </p>
             </div>
             <div className="services-layout">
-              <article className="service-card service-card--featured service-card--link">
-                <span className="service-card__icon" aria-hidden="true">
-                  <FeaturedIcon size={30} />
-                </span>
-                <div className="service-card__content">
-                  <h3>{featuredService.title}</h3>
-                  <p className="mb-0">{featuredService.text}</p>
-                  <div className="service-card__footer">
-                    {featuredService.highlight ? (
-                      <span className="service-card__tag">{featuredService.highlight}</span>
-                    ) : null}
-                    <Link className="service-card__link" href={getServicePath(featuredService.slug)}>
-                      Вижте услугата
-                      <IconArrow size={16} />
-                    </Link>
-                  </div>
-                </div>
-              </article>
+              <div className="services-premium">
+                {premiumServices.map((service) => (
+                  <PremiumServiceCard key={service.slug} service={service} />
+                ))}
+              </div>
               <div className="services-grid services-grid--rest">
-                {otherServices.map((service) => {
-                  const Icon = iconMap[service.icon];
-                  return (
-                    <article className="service-card service-card--link" key={service.slug}>
-                      <span className="service-card__icon" aria-hidden="true">
-                        <Icon />
-                      </span>
-                      <h3>{service.title}</h3>
-                      <p>{service.text}</p>
-                      {service.highlight ? (
-                        <span className="service-card__tag">{service.highlight}</span>
-                      ) : null}
-                      <Link className="service-card__link" href={getServicePath(service.slug)}>
-                        Вижте услугата
-                        <IconArrow size={16} />
-                      </Link>
-                    </article>
-                  );
-                })}
+                {regularServices.map((service) => (
+                  <ServiceCard key={service.slug} service={service} />
+                ))}
               </div>
             </div>
           </div>

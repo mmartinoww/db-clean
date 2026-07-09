@@ -123,7 +123,7 @@ export function buildBlogIndexSchemas(): JsonLdObject[] {
       url: pageUrl,
       name: "Блог | DB-Clean — Съвети за почистване и разчистване",
       description:
-        "Практически съвети за почистване на имоти, разчистване на дворове, рязане на дървета и извозване на отпадъци в Sofia и Перник.",
+        "Практически съвети за почистване на имоти, разчистване на дворове, рязане на дървета и извозване на отпадъци в София и Перник.",
       inLanguage: "bg-BG",
       isPartOf: { "@id": WEBSITE_ID },
       about: { "@id": BUSINESS_ID }

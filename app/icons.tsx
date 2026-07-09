@@ -149,6 +149,36 @@ export function IconMower({ className, size = 26 }: IconProps) {
   );
 }
 
+export function IconHome({ className, size = 26 }: IconProps) {
+  return (
+    <svg className={className} {...base(size)}>
+      <path
+        d="M4 10.5 12 4l8 6.5V20a1.5 1.5 0 0 1-1.5 1.5H5.5A1.5 1.5 0 0 1 4 20v-9.5z"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path d="M9.5 21.5V14h5v7.5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
+export function IconLeaf({ className, size = 18 }: IconProps) {
+  return (
+    <svg className={className} {...base(size)}>
+      <path
+        d="M20 4C14 4 8.5 7.5 6 13c-1.2 2.8-1.2 5.8 0 8.5 2.8-1.2 5.8-1.2 8.5 0C20 16.5 20 10 20 4z"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path d="M6 21.5c2.5-4 6-7.5 10.5-9.5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
 export function IconCheck({ className, size = 20 }: IconProps) {
   return (
     <svg className={className} {...base(size)}>

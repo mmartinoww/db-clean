@@ -1,9 +1,12 @@
+import { Fragment } from "react";
 import Link from "next/link";
 import {
   IconArrow,
   IconAttic,
   IconCheck,
+  IconHome,
   IconJeep,
+  IconLeaf,
   IconMower,
   IconPhone,
   IconSofa,
@@ -30,7 +33,8 @@ const iconMap = {
   truck: IconTruck,
   sofa: IconSofa,
   jeep: IconJeep,
-  mower: IconMower
+  mower: IconMower,
+  home: IconHome
 } satisfies Record<ServiceIcon, typeof IconAttic>;
 
 type ServicePageProps = {
@@ -103,7 +107,16 @@ export function ServicePage({ service }: ServicePageProps) {
             <div className="service-hero__media">
               <img src={service.heroImage} alt={service.heroImageAlt} loading="eager" />
               {service.highlight ? (
-                <span className="service-hero__badge">{service.highlight}</span>
+                <span
+                  className={`service-hero__badge${
+                    service.highlightVariant === "hypoallergenic" ? " service-hero__badge--hypo" : ""
+                  }`}
+                >
+                  {service.highlightVariant === "hypoallergenic" ? (
+                    <IconLeaf size={14} aria-hidden="true" />
+                  ) : null}
+                  {service.highlight}
+                </span>
               ) : null}
             </div>
           </div>
@@ -174,12 +187,72 @@ export function ServicePage({ service }: ServicePageProps) {
                 <p className="section-title">{sections.equipment.title}</p>
                 <p>{sections.equipment.intro}</p>
               </div>
-              <div className="service-equipment__media">
-                <img src="/big-bus.webp" alt={sections.equipment.title} loading="lazy" />
-              </div>
+              {equipment.length > 1 ? (
+                <div className="service-equipment-grid">
+                  {equipment.map((item) => (
+                    <article className="equipment-card" key={item.id}>
+                      <div className="equipment-card__media">
+                        <img src={item.image} alt={item.name} loading="lazy" />
+                      </div>
+                      <div className="equipment-card__body">
+                        <h3>{item.name}</h3>
+                        <p>{item.note}</p>
+                      </div>
+                    </article>
+                  ))}
+                </div>
+              ) : (
+                <div className="service-equipment__media">
+                  <img
+                    src={service.equipmentImage ?? equipment[0]?.image ?? "/big-bus.webp"}
+                    alt={service.equipmentImageAlt ?? sections.equipment.title}
+                    loading="lazy"
+                  />
+                </div>
+              )}
             </div>
           </section>
         ) : null}
+
+        {service.featureSections?.map((section, i) => (
+          <Fragment key={section.title}>
+            <section
+              className={`band band--light-alt${
+                service.featureDividerImage
+                  ? ` service-feature-band${i === 0 ? " service-feature-band--first" : ""}${
+                      i === (service.featureSections?.length ?? 0) - 1 ? " service-feature-band--last" : ""
+                    }`
+                  : ""
+              }`}
+              aria-labelledby={`service-feature-${i}-heading`}
+            >
+              <div className="band__inner">
+                <div className="area-content">
+                  <h2 id={`service-feature-${i}-heading`} className="eyebrow">
+                    {section.eyebrow}
+                  </h2>
+                  <p className="section-title">{section.title}</p>
+                  {section.paragraphs.map((paragraph) => (
+                    <p key={paragraph}>{paragraph}</p>
+                  ))}
+                </div>
+              </div>
+            </section>
+            {i === 0 && service.featureDividerImage ? (
+              <section className="band band--light-alt service-feature-divider" aria-hidden="true">
+                <div className="band__inner">
+                  <figure className="service-feature-divider__card">
+                    <img
+                      src={service.featureDividerImage}
+                      alt={service.featureDividerImageAlt ?? ""}
+                      loading="lazy"
+                    />
+                  </figure>
+                </div>
+              </section>
+            ) : null}
+          </Fragment>
+        ))}
 
         <section className="band band--light-alt" aria-labelledby="service-process-heading">
           <div className="band__inner">
@@ -257,7 +330,11 @@ export function ServicePage({ service }: ServicePageProps) {
                 </h2>
                 <p className="section-title">{sections.related.title}</p>
               </div>
-              <div className="service-related-grid">
+              <div
+                className={`service-related-grid${
+                  related.length === 1 ? " service-related-grid--single" : ""
+                }`}
+              >
                 {related.map((item) => {
                   const RelatedIcon = iconMap[item.icon];
                   return (
