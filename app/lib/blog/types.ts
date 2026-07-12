@@ -9,6 +9,8 @@ export type BlogSection = {
   heading?: string;
   paragraphs?: string[];
   listItems?: string[];
+  image?: string;
+  imageAlt?: string;
 };
 
 export type BlogPost = {

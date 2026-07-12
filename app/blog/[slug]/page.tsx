@@ -152,6 +152,15 @@ export default async function BlogPostPage({ params }: PageProps) {
                   {post.sections.map((section, i) => (
                     <section key={i} className="blog-post__section">
                       {section.heading && <h2>{section.heading}</h2>}
+                      {section.image ? (
+                        <figure className="blog-post__section-media">
+                          <img
+                            src={section.image}
+                            alt={section.imageAlt ?? ""}
+                            loading="lazy"
+                          />
+                        </figure>
+                      ) : null}
                       {section.paragraphs?.map((p, pi) => (
                         <p key={pi}>{p}</p>
                       ))}

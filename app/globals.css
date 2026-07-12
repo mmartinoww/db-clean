@@ -3553,6 +3553,21 @@ p.service-about__aside-title {
   border-left: 3px solid var(--accent);
 }
 
+.blog-post__section-media {
+  margin: 0 0 1.1rem;
+  border-radius: 20px;
+  overflow: hidden;
+  border: 1px solid rgba(254, 250, 224, 0.12);
+  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.22);
+}
+
+.blog-post__section-media img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
 .blog-post__section p {
   line-height: 1.72;
   color: rgba(254, 250, 224, 0.78);
