@@ -1,5 +1,6 @@
 import { withTrailingSlash } from "../site";
 import type { BlogCategory, BlogPost } from "./types";
+import { razchistvaneDvorDolnaSekirna } from "./posts/razchistvane-dvor-dolna-sekirna";
 import { ryazaneOpasnoDurvoPernikKladnitsa } from "./posts/ryazane-opasno-durvo-pernik-kladnitsa";
 import { pochistvaneMazeLyulinSofia } from "./posts/pochistvane-maze-lyulin-sofia";
 import { izvozvaneStariMebeliSofia } from "./posts/izvozvane-stari-mebeli-sofia";
@@ -28,6 +29,7 @@ export const blogCategories: BlogCategory[] = [
 ];
 
 export const blogPosts: BlogPost[] = [
+  razchistvaneDvorDolnaSekirna,
   ryazaneOpasnoDurvoPernikKladnitsa,
   pochistvaneMazeLyulinSofia,
   razchistvaneDvorBoyanaSofia,
