@@ -6,7 +6,8 @@ export type ServiceIcon =
   | "sofa"
   | "jeep"
   | "mower"
-  | "home";
+  | "home"
+  | "hammer";
 
 export type ServiceHighlightVariant = "default" | "hypoallergenic";
 
@@ -16,6 +17,7 @@ export type ServiceFeatureSection = {
   paragraphs: string[];
   image?: string;
   imageAlt?: string;
+  reverse?: boolean;
 };
 
 export type ServiceFaq = {
@@ -33,7 +35,7 @@ export type ServicePageSections = {
     eyebrow: string;
     title: string;
   };
-  equipment: {
+  equipment?: {
     eyebrow: string;
     title: string;
     intro: string;

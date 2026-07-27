@@ -6,6 +6,7 @@ import { kosenePoddrujkaDvorove } from "./data/kosene-poddrujka-dvorove-sofia-pe
 import { pochistvaneTavaniMazeta } from "./data/pochistvane-tavani-mazeta-sofia-pernik";
 import { prevozSglobqvaneMebeli } from "./data/prevoz-sglobqvane-mebeli-sofia-pernik";
 import { razchistvaneDvorove } from "./data/razchistvane-dvorove-sofia-pernik";
+import { remontniDeynosti } from "./data/remontni-deynosti-sofia-pernik";
 import { rqzaneOpasniDurveta } from "./data/rqzane-opasni-durveta-sofia-pernik";
 import type { ServiceDefinition, ServiceFaq, ServiceFeatureSection, ServiceHighlightVariant, ServiceIcon, ServicePageSections } from "./types";
 
@@ -19,6 +20,7 @@ export type {
 };
 
 export const services: ServiceDefinition[] = [
+  remontniDeynosti,
   pochistvaneTavaniMazeta,
   dulbokoInteriornoPochistvaneDoma,
   rqzaneOpasniDurveta,

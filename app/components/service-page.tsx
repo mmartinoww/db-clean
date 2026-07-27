@@ -4,6 +4,7 @@ import {
   IconArrow,
   IconAttic,
   IconCheck,
+  IconHammer,
   IconHome,
   IconJeep,
   IconLeaf,
@@ -34,7 +35,8 @@ const iconMap = {
   sofa: IconSofa,
   jeep: IconJeep,
   mower: IconMower,
-  home: IconHome
+  home: IconHome,
+  hammer: IconHammer
 } satisfies Record<ServiceIcon, typeof IconAttic>;
 
 type ServicePageProps = {
@@ -177,7 +179,7 @@ export function ServicePage({ service }: ServicePageProps) {
           </div>
         </section>
 
-        {equipment.length > 0 ? (
+        {equipment.length > 0 && sections.equipment ? (
           <section className="band band--light band--equipment" aria-labelledby="service-equipment-heading">
             <div className="band__inner">
               <div className="section-heading service-equipment__heading">
@@ -230,7 +232,7 @@ export function ServicePage({ service }: ServicePageProps) {
                 {section.image ? (
                   <div
                     className={`service-split service-feature-split${
-                      i % 2 === 1 ? " service-split--reverse" : ""
+                      (section.reverse ?? i % 2 === 1) ? " service-split--reverse" : ""
                     }`}
                   >
                     <div className="service-split__media">

@@ -3,6 +3,7 @@ import {
   IconArrow,
   IconAttic,
   IconCheck,
+  IconHammer,
   IconHome,
   IconJeep,
   IconLeaf,
@@ -48,12 +49,14 @@ const iconMap = {
   yard: IconYard,
   truck: IconTruck,
   sofa: IconSofa,
+  hammer: IconHammer,
   jeep: IconJeep,
   mower: IconMower,
   home: IconHome
 } satisfies Record<ServiceIcon, typeof IconAttic>;
 
 const premiumServiceSlugs = [
+  "remontni-deynosti-sofia-pernik",
   "pochistvane-tavani-mazeta-sofia-pernik",
   "dulboko-interiorno-pochistvane-doma-sofia-pernik"
 ] as const;
@@ -84,8 +87,8 @@ function PremiumServiceCard({ service }: { service: ServiceDefinition }) {
       <div className="service-card__content">
         <h3>{service.title}</h3>
         <p className="mb-0">{service.text}</p>
+        <ServiceHighlightTag service={service} />
         <div className="service-card__footer">
-          <ServiceHighlightTag service={service} />
           <Link className="service-card__link" href={getServicePath(service.slug)}>
             Вижте услугата
             <IconArrow size={16} />
