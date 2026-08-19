@@ -109,6 +109,12 @@ export function SiteFooter({ business, mapEmbedSrc }: SiteFooterProps) {
           <Link href={withTrailingSlash("/privacy")}>Поверителност</Link>
         </nav>
       </div>
+      <p className="site-footer__credit">
+        Изработено от{" "}
+        <a href="https://martin-web.dev/" target="_blank" rel="noopener noreferrer">
+          Martin-web.dev
+        </a>
+      </p>
     </footer>
   );
 }

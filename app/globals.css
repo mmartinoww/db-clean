@@ -2864,11 +2864,35 @@ p.service-about__aside-title {
   gap: 12px 24px;
   width: min(1160px, calc(100% - 48px));
   margin: 0 auto;
-  padding: 22px 0 30px;
+  padding: 22px 0 14px;
   border-top: 1px solid var(--border);
   text-align: center;
   font-size: 0.85rem;
   color: rgba(254, 250, 224, 0.68);
+}
+
+.site-footer__credit {
+  position: relative;
+  z-index: 1;
+  width: min(1160px, calc(100% - 48px));
+  margin: 0 auto;
+  padding: 0 0 26px;
+  text-align: center;
+  font-size: 0.82rem;
+  color: rgba(254, 250, 224, 0.55);
+}
+
+.site-footer__credit a {
+  color: rgba(254, 250, 224, 0.72);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: color 0.18s ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .site-footer__credit a:hover {
+    color: var(--accent);
+  }
 }
 
 /* ─── Scroll to top ─────────────────────────────────────────────────────── */
