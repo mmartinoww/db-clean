@@ -75,6 +75,8 @@ export default async function BlogPostPage({ params }: PageProps) {
   if (!post) notFound();
 
   const category = blogCategories.find((c) => c.slug === post.category);
+  const prequel = post.prequelSlug ? getBlogPostBySlug(post.prequelSlug) : undefined;
+  const nextPartService = post.nextPart ? getRelatedServices([post.nextPart.serviceSlug])[0] : undefined;
   const relatedServices = getRelatedServices(post.relatedServiceSlugs);
   const schemas = buildBlogPostSchemas(post);
 
@@ -147,6 +149,14 @@ export default async function BlogPostPage({ params }: PageProps) {
                 )}
 
                 <div className="blog-post__content">
+                  {prequel ? (
+                    <p className="blog-post__prequel">
+                      <Link href={getBlogPath(prequel.slug)} className="blog-post__prequel-link">
+                        ← Част 1: {prequel.title}
+                      </Link>
+                    </p>
+                  ) : null}
+
                   <p className="blog-post__intro">{post.intro}</p>
 
                   {post.sections.map((section, i) => (
@@ -173,6 +183,20 @@ export default async function BlogPostPage({ params }: PageProps) {
                       )}
                     </section>
                   ))}
+
+                  {post.nextPart && nextPartService ? (
+                    <section className="blog-post__next-part" aria-labelledby="blog-next-part-heading">
+                      <h2 id="blog-next-part-heading">{post.nextPart.title}</h2>
+                      <p>{post.nextPart.text}</p>
+                      <Link
+                        className="blog-post__next-part-link"
+                        href={getServicePath(nextPartService.slug)}
+                      >
+                        {nextPartService.title}
+                        <IconArrow size={16} />
+                      </Link>
+                    </section>
+                  ) : null}
 
                   {post.conclusionTitle && post.conclusionParagraphs && (
                     <section className="blog-post__conclusion">

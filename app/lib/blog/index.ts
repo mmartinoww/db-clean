@@ -1,5 +1,6 @@
 import { withTrailingSlash } from "../site";
 import type { BlogCategory, BlogPost } from "./types";
+import { apartamentTevaPernikChast2 } from "./posts/apartament-teva-pernik-chast-2";
 import { iznasyaneBoklukTevaPernik } from "./posts/iznasyane-bokluk-teva-pernik";
 import { izvozvaneOtpadaciSledRemontMladost } from "./posts/izvozvane-otpadaci-sled-remont-mladost";
 import { praveneNaZamazkaPodgotovkaRemont } from "./posts/pravene-na-zamazka-podgotovka-remont";
@@ -32,6 +33,7 @@ export const blogCategories: BlogCategory[] = [
 ];
 
 export const blogPosts: BlogPost[] = [
+  apartamentTevaPernikChast2,
   iznasyaneBoklukTevaPernik,
   izvozvaneOtpadaciSledRemontMladost,
   praveneNaZamazkaPodgotovkaRemont,

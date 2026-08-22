@@ -27,8 +27,19 @@ export function BlogCard({
 }: BlogCardProps) {
   return (
     <article className={`blog-card${featured ? " blog-card--featured" : ""}`}>
-      <Link href={getBlogPath(slug)} className="blog-card__image-link" tabIndex={-1} aria-hidden="true">
-        <div className="blog-card__image">
+      <Link
+        href={getBlogPath(slug)}
+        className={`blog-card__image-link${
+          featured ? " blog-card__image-link--featured" : " blog-card__image-link--grid"
+        }`}
+        tabIndex={-1}
+        aria-hidden="true"
+      >
+        <div
+          className={`blog-card__image${
+            featured ? " blog-card__image--featured" : " blog-card__image--grid"
+          }`}
+        >
           <img src={coverImage} alt={coverImageAlt} loading={featured ? "eager" : "lazy"} />
         </div>
       </Link>

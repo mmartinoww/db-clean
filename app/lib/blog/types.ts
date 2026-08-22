@@ -29,5 +29,11 @@ export type BlogPost = {
   sections: BlogSection[];
   conclusionTitle?: string;
   conclusionParagraphs?: string[];
+  prequelSlug?: string;
+  nextPart?: {
+    serviceSlug: string;
+    title: string;
+    text: string;
+  };
   relatedServiceSlugs: string[];
 };
