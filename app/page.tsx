@@ -58,7 +58,7 @@ const iconMap = {
 const premiumServiceSlugs = [
   "remontni-deynosti-sofia-pernik",
   "pochistvane-tavani-mazeta-sofia-pernik",
-  "dulboko-interiorno-pochistvane-doma-sofia-pernik"
+  "iznasqne-apartamenti-izhvurlqne-na-smetishte"
 ] as const;
 
 function ServiceHighlightTag({ service }: { service: ServiceDefinition }) {

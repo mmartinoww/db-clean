@@ -179,6 +179,45 @@ export function ServicePage({ service }: ServicePageProps) {
           </div>
         </section>
 
+        {service.pricingTable ? (
+          <section className="band band--light" aria-labelledby="service-pricing-heading">
+            <div className="band__inner">
+              <div className="service-pricing">
+                <div className="section-heading service-pricing__heading">
+                  <h2 id="service-pricing-heading" className="eyebrow">
+                    {service.pricingTable.eyebrow}
+                  </h2>
+                  <p className="section-title">{service.pricingTable.title}</p>
+                  {service.pricingTable.intro ? <p>{service.pricingTable.intro}</p> : null}
+                </div>
+                <div className="service-pricing__table-wrap">
+                  <table className="service-pricing__table">
+                    <thead>
+                      <tr>
+                        <th scope="col">Вид отпадък</th>
+                        <th scope="col">Цена</th>
+                        <th scope="col">Уточнение</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {service.pricingTable.rows.map((row) => (
+                        <tr key={row.item}>
+                          <th scope="row">{row.item}</th>
+                          <td>{row.price}</td>
+                          <td>{row.note ?? "Таксува се според реално предаденото количество."}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+                {service.pricingTable.disclaimer ? (
+                  <p className="service-pricing__disclaimer">{service.pricingTable.disclaimer}</p>
+                ) : null}
+              </div>
+            </div>
+          </section>
+        ) : null}
+
         {equipment.length > 0 && sections.equipment ? (
           <section className="band band--light band--equipment" aria-labelledby="service-equipment-heading">
             <div className="band__inner">
@@ -250,6 +289,12 @@ export function ServicePage({ service }: ServicePageProps) {
                       {section.paragraphs.map((paragraph) => (
                         <p key={paragraph}>{paragraph}</p>
                       ))}
+                      {section.link ? (
+                        <Link className="service-feature-link" href={section.link.href}>
+                          {section.link.label}
+                          <IconArrow size={16} />
+                        </Link>
+                      ) : null}
                     </div>
                   </div>
                 ) : (
@@ -261,6 +306,12 @@ export function ServicePage({ service }: ServicePageProps) {
                     {section.paragraphs.map((paragraph) => (
                       <p key={paragraph}>{paragraph}</p>
                     ))}
+                    {section.link ? (
+                      <Link className="service-feature-link" href={section.link.href}>
+                        {section.link.label}
+                        <IconArrow size={16} />
+                      </Link>
+                    ) : null}
                   </div>
                 )}
               </div>

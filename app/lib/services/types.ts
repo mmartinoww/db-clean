@@ -18,11 +18,29 @@ export type ServiceFeatureSection = {
   image?: string;
   imageAlt?: string;
   reverse?: boolean;
+  link?: {
+    href: string;
+    label: string;
+  };
 };
 
 export type ServiceFaq = {
   question: string;
   answer: string;
+};
+
+export type ServicePricingRow = {
+  item: string;
+  price: string;
+  note?: string;
+};
+
+export type ServicePricingTable = {
+  eyebrow: string;
+  title: string;
+  intro?: string;
+  rows: ServicePricingRow[];
+  disclaimer?: string;
 };
 
 export type ServicePageSections = {
@@ -87,6 +105,7 @@ export type ServiceDefinition = {
   includes: string[];
   benefits: string[];
   process: string[];
+  pricingTable?: ServicePricingTable;
   equipmentIds: string[];
   equipmentImage?: string;
   equipmentImageAlt?: string;

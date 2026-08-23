@@ -1341,6 +1341,87 @@ p.section-title,
   margin-inline: auto;
 }
 
+.service-pricing {
+  display: grid;
+  gap: 22px;
+}
+
+.service-pricing__heading {
+  text-align: center;
+  margin-inline: auto;
+}
+
+.service-pricing__heading .section-title {
+  max-width: 26ch;
+  margin-inline: auto;
+}
+
+.service-pricing__heading > p:not(.section-title) {
+  max-width: 68ch;
+  margin-inline: auto;
+  color: rgba(40, 54, 24, 0.78);
+  line-height: 1.65;
+}
+
+.service-pricing__table-wrap {
+  overflow-x: auto;
+  border-radius: 18px;
+  border: 1px solid rgba(96, 108, 56, 0.32);
+  background: rgba(254, 250, 224, 0.96);
+  box-shadow: 0 14px 34px rgba(40, 54, 24, 0.12);
+}
+
+.service-pricing__table {
+  width: 100%;
+  min-width: 720px;
+  border-collapse: collapse;
+  table-layout: fixed;
+  color: var(--forest);
+}
+
+.service-pricing__table th,
+.service-pricing__table td {
+  padding: 16px 18px;
+  text-align: left;
+  vertical-align: top;
+  border: 1px solid rgba(96, 108, 56, 0.22);
+}
+
+.service-pricing__table thead th {
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--fg);
+  background: var(--forest);
+}
+
+.service-pricing__table tbody th {
+  width: 38%;
+  font-weight: 800;
+  background: rgba(96, 108, 56, 0.08);
+}
+
+.service-pricing__table td:nth-child(2) {
+  width: 22%;
+  font-weight: 800;
+  color: var(--accent-end);
+  white-space: nowrap;
+}
+
+.service-pricing__table tbody tr:nth-child(even) td,
+.service-pricing__table tbody tr:nth-child(even) th {
+  background-color: rgba(96, 108, 56, 0.05);
+}
+
+.service-pricing__disclaimer {
+  max-width: 72ch;
+  margin: 0 auto;
+  text-align: center;
+  line-height: 1.65;
+  color: rgba(40, 54, 24, 0.72);
+}
+
 .section-heading.service-related__heading {
   text-align: center;
   margin-inline: auto;
@@ -1417,6 +1498,19 @@ p.section-title,
 }
 
 @media (max-width: 760px) {
+  .service-pricing__table {
+    min-width: 640px;
+  }
+
+  .service-pricing__table th,
+  .service-pricing__table td {
+    padding: 14px 16px;
+  }
+
+  .service-pricing__disclaimer {
+    text-align: left;
+  }
+
   .service-equipment-grid {
     grid-template-columns: 1fr;
   }
@@ -1955,6 +2049,24 @@ p.service-about__aside-title {
 .service-feature-split .service-split__content.area-content p {
   margin-inline: 0;
   max-width: 64ch;
+}
+
+.service-feature-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 8px;
+  font-weight: 800;
+  color: var(--forest);
+  text-decoration: none;
+  transition: color 0.18s ease, gap 0.18s ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .service-feature-link:hover {
+    gap: 12px;
+    color: var(--accent-end);
+  }
 }
 
 .service-feature-split.service-split--reverse .service-split__content.area-content {
