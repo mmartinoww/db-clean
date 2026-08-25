@@ -172,6 +172,7 @@ export default function Home() {
     .map((slug) => services.find((service) => service.slug === slug))
     .filter((service): service is ServiceDefinition => Boolean(service));
   const regularServices = services.filter((service) => !premiumServiceSlugs.includes(service.slug as (typeof premiumServiceSlugs)[number]));
+  const homeServices = [...premiumServices, ...regularServices];
   const schemas = buildHomePageSchemas({ faqs, services });
 
   return (
@@ -261,15 +262,14 @@ export default function Home() {
               </p>
             </div>
             <div className="services-layout">
-              <div className="services-premium">
-                {premiumServices.map((service) => (
-                  <PremiumServiceCard key={service.slug} service={service} />
-                ))}
-              </div>
               <div className="services-grid services-grid--rest">
-                {regularServices.map((service) => (
-                  <ServiceCard key={service.slug} service={service} />
-                ))}
+                {homeServices.map((service) =>
+                  premiumServiceSlugs.includes(service.slug as (typeof premiumServiceSlugs)[number]) ? (
+                    <PremiumServiceCard key={service.slug} service={service} />
+                  ) : (
+                    <ServiceCard key={service.slug} service={service} />
+                  )
+                )}
               </div>
             </div>
           </div>
