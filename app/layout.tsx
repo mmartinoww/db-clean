@@ -95,13 +95,16 @@ export const metadata: Metadata = {
     }
   },
 
-  // ── Icons (favicon.ico in /app is auto-served by Next.js) ───────────────
+  // ── Icons ───────────────────────────────────────────────────────────────
   icons: {
     icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/icons/icon-16.png", sizes: "16x16", type: "image/png" },
+      { url: "/icons/icon-32.png", sizes: "32x32", type: "image/png" },
       { url: "/icons/icon-192.png", sizes: "192x192", type: "image/png" },
       { url: "/icons/icon-512.png", sizes: "512x512", type: "image/png" }
     ],
-    apple: "/icons/icon-192.png"
+    apple: [{ url: "/icons/apple-touch-icon.png", sizes: "180x180", type: "image/png" }]
   },
 
   // ── Verification (add real tokens when available) ───────────────────────
