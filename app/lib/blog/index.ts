@@ -1,5 +1,6 @@
 import { withTrailingSlash } from "../site";
 import type { BlogCategory, BlogPost } from "./types";
+import { sabarqneStaraBarakaRazchistvaneTeren } from "./posts/sabarqne-stara-baraka-razchistvane-teren";
 import { opasnoDurvoVDvoraNeChakayte } from "./posts/opasno-durvo-v-dvora-ne-chakayte";
 import { savetiKosenePoddruzhkaDvorSofiaPernik } from "./posts/saveti-kosene-poddruzhka-dvor-sofia-pernik";
 import { apartamentTevaPernikChast4ZavarshenDoKluch } from "./posts/apartament-teva-pernik-chast-4-zavarshen-do-kluch";
@@ -37,6 +38,7 @@ export const blogCategories: BlogCategory[] = [
 ];
 
 export const blogPosts: BlogPost[] = [
+  sabarqneStaraBarakaRazchistvaneTeren,
   opasnoDurvoVDvoraNeChakayte,
   savetiKosenePoddruzhkaDvorSofiaPernik,
   apartamentTevaPernikChast4ZavarshenDoKluch,
