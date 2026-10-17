@@ -1,5 +1,6 @@
 import { withTrailingSlash } from "../site";
 import type { BlogCategory, BlogPost } from "./types";
+import { izvozvaneOtpadaciOgromenBus } from "./posts/izvozvane-otpadaci-ogromen-bus";
 import { remontniDeynostiOsvejavaneImoti } from "./posts/remontni-deynosti-osvejavane-imoti";
 import { dostupDoTrudnodostupniImotiKogaAvtomobilNeStiga } from "./posts/dostup-do-trudnodostupni-imoti-koga-avtomobil-ne-stiga";
 import { sabarqneStaraBarakaRazchistvaneTeren } from "./posts/sabarqne-stara-baraka-razchistvane-teren";
@@ -40,6 +41,7 @@ export const blogCategories: BlogCategory[] = [
 ];
 
 export const blogPosts: BlogPost[] = [
+  izvozvaneOtpadaciOgromenBus,
   remontniDeynostiOsvejavaneImoti,
   dostupDoTrudnodostupniImotiKogaAvtomobilNeStiga,
   sabarqneStaraBarakaRazchistvaneTeren,
