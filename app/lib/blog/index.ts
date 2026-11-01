@@ -1,5 +1,6 @@
 import { withTrailingSlash } from "../site";
 import type { BlogCategory, BlogPost } from "./types";
+import { esennoRazchistvaneDvorovePodgotovkaZima } from "./posts/esenno-razchistvane-dvorove-podgotovka-zima";
 import { izvozvaneStariMebeliDarvenMaterialBatanovtsi } from "./posts/izvozvane-stari-mebeli-darven-material-batanovtsi";
 import { izvozvaneOtpadaciOgromenBus } from "./posts/izvozvane-otpadaci-ogromen-bus";
 import { remontniDeynostiOsvejavaneImoti } from "./posts/remontni-deynosti-osvejavane-imoti";
@@ -42,6 +43,7 @@ export const blogCategories: BlogCategory[] = [
 ];
 
 export const blogPosts: BlogPost[] = [
+  esennoRazchistvaneDvorovePodgotovkaZima,
   izvozvaneStariMebeliDarvenMaterialBatanovtsi,
   izvozvaneOtpadaciOgromenBus,
   remontniDeynostiOsvejavaneImoti,
