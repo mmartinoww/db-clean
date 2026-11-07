@@ -22,6 +22,7 @@ import { pochistvaneTavanMazeSofia } from "./posts/pochistvane-tavan-maze-sofia"
 import { razchistvaneDvorBoyanaSofia } from "./posts/razchistvane-dvor-boyana-sofia";
 import { razchistvaneObrasulDvorSaveti } from "./posts/razchistvane-obrasul-dvor-saveti";
 import { ryazaneOpasniDurvetaKoga } from "./posts/ryazane-opasni-durveta-koga";
+import { pochistvaneTavanPrediRemontProdazhbaImot } from "./posts/pochistvane-tavan-predi-remont-prodazhba-imot";
 
 export type { BlogCategory, BlogPost };
 
@@ -43,6 +44,7 @@ export const blogCategories: BlogCategory[] = [
 ];
 
 export const blogPosts: BlogPost[] = [
+  pochistvaneTavanPrediRemontProdazhbaImot,
   esennoRazchistvaneDvorovePodgotovkaZima,
   izvozvaneStariMebeliDarvenMaterialBatanovtsi,
   izvozvaneOtpadaciOgromenBus,
